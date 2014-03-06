@@ -12,26 +12,34 @@ from matplotlib import pyplot
 import sklearn.decomposition
 
 def main():
-
+	# First load the audio data, the audio data on this example is obtained from http://www.ism.ac.jp/~shiro/research/blindsep.html
 	rate, source = scipy.io.wavfile.read('/Users/saburookita/Sandbox/X_rsm2.wav')
+
+	# The 2 sources are stored in left and right channels of the audio
 	source_1, source_2 = source[:, 0], source[:, 1]
 	data = c_[source_1, source_2]
+
+	# Normalize the audio from int16 range to [-1, 1]
 	data = data / 2.0 ** 15
 
-	fast_ica  = sklearn.decomposition.FastICA( n_components=2,  )
+	# Perform Fast ICA on the data to obtained separated sources
+	fast_ica  = sklearn.decomposition.FastICA( n_components=2  )
 	separated = fast_ica.fit_transform( data )
 
+	# Check, data = separated X mixing_matrix + mean
 	assert allclose( data, separated.dot( fast_ica.mixing_.T ) + fast_ica.mean_ )
 
+	# Map the separated result into [-1, 1] range
 	max_source, min_source = 1.0, -1.0
 	max_result, min_result = max(separated.flatten()), min(separated.flatten())
 	separated = map( lambda x: (2.0 * (x - min_result))/(max_result - min_result) + -1.0, separated.flatten() )
 	separated = reshape( separated, (shape(separated)[0] / 2, 2) )
 	
+	# Store the separated audio, listen to them later
 	scipy.io.wavfile.write( '/Users/saburookita/Sandbox/separated_1.wav', rate, separated[:, 0] )
 	scipy.io.wavfile.write( '/Users/saburookita/Sandbox/separated_2.wav', rate, separated[:, 1] )
 
-
+	# Plot the original and separated audio data
 	fig = pyplot.figure( figsize=(10, 8) )
 	fig.canvas.set_window_title( 'Blind Source Separation' )
 
