@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A8ABB12618E2B770008A38E1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB12518E2B770008A38E1 /* main.cpp */; };
+		A8ABB12818E2B770008A38E1 /* SFM.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8ABB12718E2B770008A38E1 /* SFM.1 */; };
+		A8ABB14218E2E798008A38E1 /* Arcball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB12F18E2E798008A38E1 /* Arcball.cpp */; };
+		A8ABB14318E2E798008A38E1 /* BasicShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB13118E2E798008A38E1 /* BasicShape.cpp */; };
+		A8ABB14418E2E798008A38E1 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB13318E2E798008A38E1 /* Cube.cpp */; };
+		A8ABB14518E2E798008A38E1 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB13618E2E798008A38E1 /* Plane.cpp */; };
+		A8ABB14618E2E798008A38E1 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB13818E2E798008A38E1 /* Shader.cpp */; };
+		A8ABB14718E2E798008A38E1 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB13A18E2E798008A38E1 /* Sphere.cpp */; };
+		A8ABB14818E2E798008A38E1 /* Torus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB13C18E2E798008A38E1 /* Torus.cpp */; };
+		A8ABB14918E2E798008A38E1 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB13E18E2E798008A38E1 /* Util.cpp */; };
+		A8ABB14A18E2E798008A38E1 /* Viewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB14018E2E798008A38E1 /* Viewer.cpp */; };
+		A8ABB14C18E2E7FD008A38E1 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8ABB14B18E2E7FD008A38E1 /* OpenGL.framework */; };
+		A8ABB14E18E2E814008A38E1 /* libglfw3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8ABB14D18E2E814008A38E1 /* libglfw3.3.0.dylib */; };
+		A8ABB15218E2E82C008A38E1 /* libfreeimage-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8ABB15018E2E82C008A38E1 /* libfreeimage-3.15.4.dylib */; };
+		A8ABB15318E2E82C008A38E1 /* libfreeimageplus-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8ABB15118E2E82C008A38E1 /* libfreeimageplus-3.15.4.dylib */; };
+		A8ABB15618E2E87E008A38E1 /* SimpleViewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ABB15418E2E87E008A38E1 /* SimpleViewer.cpp */; };
+		A8ABB15A18E2EF4A008A38E1 /* objectPass.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8ABB15818E2EAAF008A38E1 /* objectPass.fsh */; };
+		A8ABB15B18E2EF4A008A38E1 /* objectPass.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8ABB15918E2EAAF008A38E1 /* objectPass.vsh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A8ABB12018E2B770008A38E1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				A8ABB15A18E2EF4A008A38E1 /* objectPass.fsh in CopyFiles */,
+				A8ABB15B18E2EF4A008A38E1 /* objectPass.vsh in CopyFiles */,
+				A8ABB12818E2B770008A38E1 /* SFM.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A8ABB12218E2B770008A38E1 /* SFM */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SFM; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8ABB12518E2B770008A38E1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A8ABB12718E2B770008A38E1 /* SFM.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SFM.1; sourceTree = "<group>"; };
+		A8ABB12F18E2E798008A38E1 /* Arcball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arcball.cpp; sourceTree = "<group>"; };
+		A8ABB13018E2E798008A38E1 /* Arcball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arcball.h; sourceTree = "<group>"; };
+		A8ABB13118E2E798008A38E1 /* BasicShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicShape.cpp; sourceTree = "<group>"; };
+		A8ABB13218E2E798008A38E1 /* BasicShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicShape.h; sourceTree = "<group>"; };
+		A8ABB13318E2E798008A38E1 /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
+		A8ABB13418E2E798008A38E1 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
+		A8ABB13518E2E798008A38E1 /* GLVHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVHeader.h; sourceTree = "<group>"; };
+		A8ABB13618E2E798008A38E1 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
+		A8ABB13718E2E798008A38E1 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		A8ABB13818E2E798008A38E1 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		A8ABB13918E2E798008A38E1 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		A8ABB13A18E2E798008A38E1 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
+		A8ABB13B18E2E798008A38E1 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
+		A8ABB13C18E2E798008A38E1 /* Torus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Torus.cpp; sourceTree = "<group>"; };
+		A8ABB13D18E2E798008A38E1 /* Torus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Torus.h; sourceTree = "<group>"; };
+		A8ABB13E18E2E798008A38E1 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
+		A8ABB13F18E2E798008A38E1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		A8ABB14018E2E798008A38E1 /* Viewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Viewer.cpp; sourceTree = "<group>"; };
+		A8ABB14118E2E798008A38E1 /* Viewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Viewer.h; sourceTree = "<group>"; };
+		A8ABB14B18E2E7FD008A38E1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		A8ABB14D18E2E814008A38E1 /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = /usr/local/Cellar/glfw3/3.0.3/lib/libglfw3.3.0.dylib; sourceTree = "<absolute>"; };
+		A8ABB15018E2E82C008A38E1 /* libfreeimage-3.15.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfreeimage-3.15.4.dylib"; path = "/usr/local/Cellar/freeimage/3.15.4/lib/libfreeimage-3.15.4.dylib"; sourceTree = "<absolute>"; };
+		A8ABB15118E2E82C008A38E1 /* libfreeimageplus-3.15.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfreeimageplus-3.15.4.dylib"; path = "/usr/local/Cellar/freeimage/3.15.4/lib/libfreeimageplus-3.15.4.dylib"; sourceTree = "<absolute>"; };
+		A8ABB15418E2E87E008A38E1 /* SimpleViewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleViewer.cpp; sourceTree = "<group>"; };
+		A8ABB15518E2E87E008A38E1 /* SimpleViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleViewer.h; sourceTree = "<group>"; };
+		A8ABB15818E2EAAF008A38E1 /* objectPass.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = objectPass.fsh; sourceTree = "<group>"; };
+		A8ABB15918E2EAAF008A38E1 /* objectPass.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = objectPass.vsh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A8ABB11F18E2B770008A38E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8ABB14C18E2E7FD008A38E1 /* OpenGL.framework in Frameworks */,
+				A8ABB14E18E2E814008A38E1 /* libglfw3.3.0.dylib in Frameworks */,
+				A8ABB15218E2E82C008A38E1 /* libfreeimage-3.15.4.dylib in Frameworks */,
+				A8ABB15318E2E82C008A38E1 /* libfreeimageplus-3.15.4.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A8ABB11918E2B770008A38E1 = {
+			isa = PBXGroup;
+			children = (
+				A8ABB14F18E2E818008A38E1 /* lib */,
+				A8ABB12418E2B770008A38E1 /* SFM */,
+				A8ABB12318E2B770008A38E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A8ABB12318E2B770008A38E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABB12218E2B770008A38E1 /* SFM */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A8ABB12418E2B770008A38E1 /* SFM */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABB15718E2EAAF008A38E1 /* shaders */,
+				A8ABB12E18E2E798008A38E1 /* glv */,
+				A8ABB12518E2B770008A38E1 /* main.cpp */,
+				A8ABB12718E2B770008A38E1 /* SFM.1 */,
+				A8ABB15418E2E87E008A38E1 /* SimpleViewer.cpp */,
+				A8ABB15518E2E87E008A38E1 /* SimpleViewer.h */,
+			);
+			path = SFM;
+			sourceTree = "<group>";
+		};
+		A8ABB12E18E2E798008A38E1 /* glv */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABB12F18E2E798008A38E1 /* Arcball.cpp */,
+				A8ABB13018E2E798008A38E1 /* Arcball.h */,
+				A8ABB13118E2E798008A38E1 /* BasicShape.cpp */,
+				A8ABB13218E2E798008A38E1 /* BasicShape.h */,
+				A8ABB13318E2E798008A38E1 /* Cube.cpp */,
+				A8ABB13418E2E798008A38E1 /* Cube.h */,
+				A8ABB13518E2E798008A38E1 /* GLVHeader.h */,
+				A8ABB13618E2E798008A38E1 /* Plane.cpp */,
+				A8ABB13718E2E798008A38E1 /* Plane.h */,
+				A8ABB13818E2E798008A38E1 /* Shader.cpp */,
+				A8ABB13918E2E798008A38E1 /* Shader.h */,
+				A8ABB13A18E2E798008A38E1 /* Sphere.cpp */,
+				A8ABB13B18E2E798008A38E1 /* Sphere.h */,
+				A8ABB13C18E2E798008A38E1 /* Torus.cpp */,
+				A8ABB13D18E2E798008A38E1 /* Torus.h */,
+				A8ABB13E18E2E798008A38E1 /* Util.cpp */,
+				A8ABB13F18E2E798008A38E1 /* Util.h */,
+				A8ABB14018E2E798008A38E1 /* Viewer.cpp */,
+				A8ABB14118E2E798008A38E1 /* Viewer.h */,
+			);
+			path = glv;
+			sourceTree = "<group>";
+		};
+		A8ABB14F18E2E818008A38E1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABB15018E2E82C008A38E1 /* libfreeimage-3.15.4.dylib */,
+				A8ABB15118E2E82C008A38E1 /* libfreeimageplus-3.15.4.dylib */,
+				A8ABB14D18E2E814008A38E1 /* libglfw3.3.0.dylib */,
+				A8ABB14B18E2E7FD008A38E1 /* OpenGL.framework */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		A8ABB15718E2EAAF008A38E1 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABB15818E2EAAF008A38E1 /* objectPass.fsh */,
+				A8ABB15918E2EAAF008A38E1 /* objectPass.vsh */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A8ABB12118E2B770008A38E1 /* SFM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8ABB12B18E2B770008A38E1 /* Build configuration list for PBXNativeTarget "SFM" */;
+			buildPhases = (
+				A8ABB11E18E2B770008A38E1 /* Sources */,
+				A8ABB11F18E2B770008A38E1 /* Frameworks */,
+				A8ABB12018E2B770008A38E1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SFM;
+			productName = SFM;
+			productReference = A8ABB12218E2B770008A38E1 /* SFM */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A8ABB11A18E2B770008A38E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Saburo Okita";
+			};
+			buildConfigurationList = A8ABB11D18E2B770008A38E1 /* Build configuration list for PBXProject "SFM" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A8ABB11918E2B770008A38E1;
+			productRefGroup = A8ABB12318E2B770008A38E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A8ABB12118E2B770008A38E1 /* SFM */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A8ABB11E18E2B770008A38E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8ABB14918E2E798008A38E1 /* Util.cpp in Sources */,
+				A8ABB14418E2E798008A38E1 /* Cube.cpp in Sources */,
+				A8ABB12618E2B770008A38E1 /* main.cpp in Sources */,
+				A8ABB14518E2E798008A38E1 /* Plane.cpp in Sources */,
+				A8ABB14218E2E798008A38E1 /* Arcball.cpp in Sources */,
+				A8ABB14718E2E798008A38E1 /* Sphere.cpp in Sources */,
+				A8ABB14618E2E798008A38E1 /* Shader.cpp in Sources */,
+				A8ABB14A18E2E798008A38E1 /* Viewer.cpp in Sources */,
+				A8ABB15618E2E87E008A38E1 /* SimpleViewer.cpp in Sources */,
+				A8ABB14318E2E798008A38E1 /* BasicShape.cpp in Sources */,
+				A8ABB14818E2E798008A38E1 /* Torus.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A8ABB12918E2B770008A38E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A8ABB12A18E2B770008A38E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A8ABB12C18E2B770008A38E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/opencv/2.4.7.1/include,
+					/usr/local/Cellar/freeimage/3.15.4/include,
+					/usr/local/Cellar/glfw3/3.0.3/include,
+					/usr/local/Cellar/glm/0.9.4.6/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/opencv/2.4.7.1/lib,
+					/usr/local/Cellar/freeimage/3.15.4/lib,
+					/usr/local/Cellar/glfw3/3.0.3/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lopencv_core",
+					"-lopencv_highgui",
+					"-lopencv_imgproc",
+					"-lopencv_legacy",
+					"-lopencv_contrib",
+					"-lopencv_calib3d",
+					"-lopencv_features2d",
+					"-lopencv_flann",
+					"-lopencv_ml",
+					"-lopencv_objdetect",
+					"-lopencv_video",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A8ABB12D18E2B770008A38E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/opencv/2.4.7.1/include,
+					/usr/local/Cellar/freeimage/3.15.4/include,
+					/usr/local/Cellar/glfw3/3.0.3/include,
+					/usr/local/Cellar/glm/0.9.4.6/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/opencv/2.4.7.1/lib,
+					/usr/local/Cellar/freeimage/3.15.4/lib,
+					/usr/local/Cellar/glfw3/3.0.3/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lopencv_core",
+					"-lopencv_highgui",
+					"-lopencv_imgproc",
+					"-lopencv_legacy",
+					"-lopencv_contrib",
+					"-lopencv_calib3d",
+					"-lopencv_features2d",
+					"-lopencv_flann",
+					"-lopencv_ml",
+					"-lopencv_objdetect",
+					"-lopencv_video",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A8ABB11D18E2B770008A38E1 /* Build configuration list for PBXProject "SFM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8ABB12918E2B770008A38E1 /* Debug */,
+				A8ABB12A18E2B770008A38E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8ABB12B18E2B770008A38E1 /* Build configuration list for PBXNativeTarget "SFM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8ABB12C18E2B770008A38E1 /* Debug */,
+				A8ABB12D18E2B770008A38E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A8ABB11A18E2B770008A38E1 /* Project object */;
+}
