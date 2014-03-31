@@ -114,6 +114,7 @@ int main(int argc, const char * argv[]) {
     Mat L = Mat::diag( degree ) - adjacency;
     Mat degree_05;
     pow( degree, -0.5, degree_05 );
+    degree_05 = Mat::diag( degree_05 );
     L = (degree_05 * L) * degree_05;
     
     /* Perform eigen decompositions */
@@ -129,6 +130,8 @@ int main(int argc, const char * argv[]) {
     
     /* Plot it out */
     Mat img(600, 600, CV_8UC3, Scalar(255, 255, 255) );
+    plot( img, points );
+    
     Mat points_mat( points );
     plot( img, points_mat, labels );
     
