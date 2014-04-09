@@ -54,6 +54,9 @@ float Procrustes::sumSquared( const Mat& mat ) {
     return temp_scalar[0] + temp_scalar[1];
 }
 
+/**
+ * Wrapper for vector of points
+ */
 float Procrustes::procrustes(vector<Point2f> &X, vector<Point2f> &Y) {
     return procrustes( Mat(X), Mat(Y));
 }
@@ -68,6 +71,7 @@ float Procrustes::procrustes( const Mat& X, const Mat& Y ){
     
     Scalar mu_y = cv::mean(Y);
     Mat Y0      = Y - Mat(Y.size(), Y.type(), mu_y);
+    
     
     /* ... and normalize them */
     float ss_X      = sumSquared( X0 );
@@ -89,8 +93,10 @@ float Procrustes::procrustes( const Mat& X, const Mat& Y ){
     Mat U, s, Vt;
     SVDecomp( A, s, U, Vt );
     
+    /* Since in USV, U and V represents the rotation, and S is the scaling... */
     Mat V           = Vt.t();
     this->rotation  = V * U.t();
+    
     
     if( !bestReflection ) {
         bool have_reflection = determinant( this->rotation ) < 0;
@@ -124,4 +130,87 @@ float Procrustes::procrustes( const Mat& X, const Mat& Y ){
     translation = Mat(1, 1, CV_32FC2, mu_x).reshape(1) - scale * Mat(1, 1, CV_32FC2, mu_y).reshape(1) * rotation;
     
     return error;
+}
+
+/**
+ * Wrapper for vector<vector<Point2f>>
+ */
+vector<Point2f> Procrustes::generalizedProcrustes( vector<vector<Point2f>>& X, const int itol, const float ftol ) {
+    vector<Mat> temp(X.size());
+    for( int i = 0; i < temp.size(); i++ )
+        temp[i] = Mat( X[i] );
+    return generalizedProcrustes( temp, itol, ftol );
+}
+
+
+/**
+ * Recenter each matrix / set of points, by subtracting them with the mean / centroid
+ */
+vector<Mat> Procrustes::recenter( const vector<Mat>& X ) {
+    vector<Mat> result;
+    for( Mat x : X ) {
+        Scalar mu_x = cv::mean(x);
+        Mat temp    = x - Mat(x.size(), x.type(), mu_x);
+        result.push_back( temp );
+    }
+    return result;
+}
+
+/**
+ * Normalize each set of points
+ */
+vector<Mat> Procrustes::normalize( const vector<Mat>& X ) {
+    vector<Mat> result;
+    for( Mat x : X )
+        result.push_back( x / cv::norm( x ) );
+    return result;
+}
+
+/**
+ * Perform rotation alignment between a set of points / shapes and a chosen mean shape
+ * Points and mean shape should already be centered and normalize prior to the call of this function
+ */
+vector<Mat> Procrustes::align( const vector<Mat>& X, Mat& mean_shape ) {
+    vector<Mat> result;
+    Mat w, u, vt;
+    for( Mat x : X ){
+        SVDecomp( mean_shape.reshape(1).t() * x.reshape(1) , w, u, vt);
+        result.push_back( (x.reshape(1) * vt.t()) * u.t() );
+    }
+    return result;
+}
+
+/**
+ * Perform a generalized Procrustes analysis to find the mean shape
+ **/
+vector<Point2f> Procrustes::generalizedProcrustes( std::vector<cv::Mat>& X, const int itol, const float ftol ) {
+    /* Arbitrarily choose the first set of points as our mean shape */
+    Mat mean_shape = X[0].reshape( 1 );
+    
+    int counter = 0;
+    while( true ) {
+        /* recenter, normalize, align */
+        X = recenter( X );
+        X = normalize( X );
+        X = align( X, mean_shape );
+        
+        /* Find a new mean shape from all the set of points */
+        Mat new_mean = Mat::zeros( mean_shape.size(), mean_shape.type() );
+        for ( Mat x : X )
+            new_mean += x;
+        new_mean = new_mean / X.size();
+        
+        /* Perform the loop until convergence */
+        float diff = norm( new_mean, mean_shape );
+        if( diff <= ftol || counter > itol )
+            break;
+        
+        mean_shape = new_mean;
+        counter++;
+    }
+    
+    /* Return the result as vector of points */
+    vector<Point2f> result;
+    mean_shape.reshape(2).copyTo( result );
+    return result;
 }
