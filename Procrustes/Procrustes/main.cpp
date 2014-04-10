@@ -14,7 +14,7 @@ using namespace std;
 using namespace cv;
 
 vector<Mat> generateTestData( int size ) {
-    srand(static_cast<unsigned int>(time(NULL)));
+//    srand(static_cast<unsigned int>(time(NULL)));
     
     vector<Mat> result;
     
@@ -121,14 +121,15 @@ void generalizedProcrustesTest() {
     temp     = Scalar( 220, 220, 220 );
     
     /* Apply general procrustes analysis to get the mean shape */
+    Mat mean_mat;
     Procrustes proc;
-    vector<Point2f> mean_shape = proc.generalizedProcrustes( points );
+    points = proc.generalizedProcrustes( points, mean_mat );
     
     /* The mean shape is normalized, thus in order to view it, we scale it and translate it a bit */
-    Mat mean_mat( mean_shape );
+    vector<Point2f> mean_shape;
     mean_mat *= 600;
     mean_mat += Scalar( 150, 150 );
-    mean_mat.copyTo( mean_shape );
+    mean_mat.reshape(2).copyTo( mean_shape );
     
     /* Plot out our image */
     for( Point2f point : mean_shape )
