@@ -27,6 +27,8 @@ void testFaceTracker( string video_filename );
 
 /**
  * Before starting, please update Header.h, so that it points to proper directories
+ * All the MUCT images should be placed under muct/jpg/ , e.g. muct/jpg/i000qa-fn.jpg
+ * while the landmarks should be in muct/muct-landmarks/
  */
 int main(int argc, const char * argv[]) {
     vector<MUCTLandmark> landmarks = MUCTLandmark::readFromCSV( path + "muct-landmarks/muct76-opencv.csv" );
