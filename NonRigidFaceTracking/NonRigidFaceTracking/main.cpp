@@ -69,6 +69,7 @@ vector<vector<Point>> asContour( vector<Point2f>& points ) {
     return contours;
 }
 
+
 /**
  * Train a face detector, basically applying viola jones cascade classifier
  * to find the median offset for the points.
@@ -113,6 +114,39 @@ void trainPatchModel( vector<MUCTLandmark>& landmarks ) {
     pmodel.visualize();
 }
 
+vector<vector<Point2f>> getDelanuayTriangles( vector<Point2f>& points ) {
+    vector<vector<Point2f>> result;
+    
+    Point2f top_left    ( numeric_limits<float>::max(), numeric_limits<float>::max() );
+    Point2f bottom_right( numeric_limits<float>::min(), numeric_limits<float>::min() );
+    for( Point2f point : points ) {
+        top_left.x      = MIN( top_left.x, point.x );
+        top_left.y      = MIN( top_left.y, point.y );
+        bottom_right.x  = MAX( bottom_right.x, point.x );
+        bottom_right.y  = MAX( bottom_right.y, point.y );
+    }
+    
+    Rect rect( top_left - Point2f(5, 5), bottom_right + Point2f(5, 5) );
+    Subdiv2D delanuay( rect );
+    delanuay.insert( points );
+    
+    vector<Vec6f> triangles;
+    delanuay.getTriangleList( triangles );
+    
+    for( Vec6f triangle: triangles ) {
+        Point2f a( triangle[0], triangle[1] );
+        Point2f b( triangle[2], triangle[3] );
+        Point2f c( triangle[4], triangle[5] );
+        
+        if( rect.contains( a ) && rect.contains( b ) && rect.contains( c )){
+            vector<Point2f> triangle_points = { a, b, c };
+            result.push_back( triangle_points );
+        }
+    }
+    
+    return result;
+}
+
 /**
  * Test the trained face tracker
  **/
@@ -146,6 +180,7 @@ void testFaceTracker( string video_filename ) {
     moveWindow("", 0, 0);
     
     bool draw_connections = false;
+    bool triangulation = false;
     
     while( true ){
         cap >> frame;
@@ -164,16 +199,25 @@ void testFaceTracker( string video_filename ) {
             for( vector<Point2f> points: tracker.allPoints ) {
                 for( Point2f point : points )
                     circle( frame, point, 1, Scalar(0, 0, 255), 1, CV_AA);
-            }
-            
-            /* Draw the predefined connections between each points */
-            if( draw_connections ){
-                for( vector<Point2f> points: tracker.allPoints ) {
+                
+                /* Draw triangulation from all the points */
+                if( triangulation ) {
+                    vector<vector<Point2f>> triangles = getDelanuayTriangles( points );
+                    for( vector<Point2f> triangle: triangles ) {
+                        line( frame, triangle[0], triangle[1], Scalar(0, 255, 0) );
+                        line( frame, triangle[1], triangle[2], Scalar(0, 255, 0) );
+                        line( frame, triangle[2], triangle[0], Scalar(0, 255, 0) );
+                    }
+                }
+                
+                /* Draw the predefined connections between each points */
+                if( draw_connections ){
                     vector<vector<Point>> contours = asContour( points );
                     for( int i = 0; i < contours.size(); i++ )
                         drawContours( frame, contours, i, Scalar(0, 255, 0));
                 }
             }
+            
         }
         
         imshow( "", frame );
@@ -181,8 +225,16 @@ void testFaceTracker( string video_filename ) {
         int key = waitKey(10);
         if( key == 'q' )
             break;
-        else if( key == 'c' )
+        else if( key == 'c' ) {
             draw_connections = !draw_connections;
+            if( draw_connections )
+                triangulation = false;
+        }
+        else if( key == 't' ){
+            triangulation = !triangulation;
+            if( triangulation )
+                draw_connections = false;
+        }
         else if( key == 'd' )
             tracker.tracking = false;
     }

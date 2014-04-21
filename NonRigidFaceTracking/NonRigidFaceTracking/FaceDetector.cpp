@@ -63,7 +63,7 @@ vector<vector<Point2f>> FaceDetector::detect( Mat& grayscale, vector<Rect>& face
     if( faces.empty() )
         return points;
     
-    for( Rect face : faces ) {
+    for( Rect& face : faces ) {
         Vec3f scale = detectorOffset * face.width;
         
         /* Apply scaling and translation transformation to our reference shape */
