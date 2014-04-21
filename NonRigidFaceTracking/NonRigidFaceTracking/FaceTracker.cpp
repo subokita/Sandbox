@@ -8,7 +8,9 @@
 
 #include "FaceTracker.h"
 
-
+/**
+ * If the histogram is similar, then it's probably the same scene
+ */
 double FaceTracker::probSameScene( Mat& gray ) {
     static int histSize = 256;
     static float range[] = { 0, 256 } ;
@@ -34,14 +36,15 @@ bool FaceTracker::track( const Mat& image, vector<Rect>& faces, const vector<Siz
         tracking = false;
     
     if( !tracking )
-        points = detector.detect( gray, faces );
+        allPoints = detector.detect( gray, faces );
     
-    if( points.size() != shapeModel.noOfPoints() )
+    if( allPoints.empty() || allPoints[0].size() != shapeModel.noOfPoints() )
         return false;
     
-    for( Size level: levels )
-        points = fit( gray, points, level, robust, itol, ftol );
-    
+    for( vector<Point2f>& points: allPoints ){
+        for( Size level: levels )
+            points = fit( gray, points, level, robust, itol, ftol );
+    }
     tracking = true;
     
     return true;

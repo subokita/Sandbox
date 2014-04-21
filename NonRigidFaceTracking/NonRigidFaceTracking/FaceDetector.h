@@ -19,7 +19,7 @@ public:
     Mat reference;
     Vec3f detectorOffset;
     
-    vector<Point2f> detect( Mat& grayscale, vector<Rect>& faces, const float scale_factor = 1.2,
+    vector<vector<Point2f>> detect( Mat& grayscale, vector<Rect>& faces, const float scale_factor = 1.2,
                             const int min_neighbors = 4, const Size min_size = Size(30, 30));
     
     void train( vector<MUCTLandmark> data, const string cascade_xml_filename, const Mat& ref,

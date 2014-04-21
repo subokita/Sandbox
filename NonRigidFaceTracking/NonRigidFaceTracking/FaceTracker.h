@@ -21,7 +21,8 @@ public:
     ShapeModel shapeModel;
     PatchModels patchModels;
     
-    vector<Point2f> points;
+    vector<vector<Point2f>> allPoints;
+//    vector<Point2f> points;
     bool tracking = false;
     Mat prevHistogram;
     

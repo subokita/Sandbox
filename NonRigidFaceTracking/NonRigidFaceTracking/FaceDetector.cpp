@@ -48,32 +48,36 @@ float FaceDetector::calcScale( const vector<Point2f>& points, const Point2f cent
 }
 
 
-vector<Point2f> FaceDetector::detect( Mat& grayscale, vector<Rect>& faces, const float scale_factor, const int min_neighbors, const Size min_size) {
+vector<vector<Point2f>> FaceDetector::detect( Mat& grayscale, vector<Rect>& faces, const float scale_factor, const int min_neighbors, const Size min_size) {
     if( classifier.empty() )
         classifier.load( cascadeXMLFilename );
     
-    vector<Point2f> points;
+    vector<vector<Point2f>> points;
     
     Mat equalized;
     equalizeHist( grayscale, equalized );
     
     classifier.detectMultiScale( equalized, faces, scale_factor, min_neighbors,
-                                CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_SCALE_IMAGE, min_size );
+                                CV_HAAR_SCALE_IMAGE, min_size );
 
     if( faces.empty() )
         return points;
+    
+    for( Rect face : faces ) {
+        Vec3f scale = detectorOffset * face.width;
         
-    Vec3f scale = detectorOffset * faces[0].width;
-    
-    /* Apply scaling and translation transformation to our reference shape */
-    Mat transform = (Mat_<float>(2, 3) <<
-                     scale[2], 0, faces[0].x + 0.5 * faces[0].width  + scale[0],
-                     0, scale[2], faces[0].y + 0.5 * faces[0].height + scale[1] );
-    
-    Mat mat;
-    cv::transform( reference.reshape( 2 ), mat, transform );
-    
-    mat.copyTo( points );
+        /* Apply scaling and translation transformation to our reference shape */
+        Mat transform = (Mat_<float>(2, 3) <<
+                         scale[2], 0, face.x + 0.5 * face.width  + scale[0],
+                         0, scale[2], face.y + 0.5 * face.height + scale[1] );
+        
+        Mat mat;
+        cv::transform( reference.reshape( 2 ), mat, transform );
+        
+        vector<Point2f> temp;
+        mat.copyTo( temp );
+        points.push_back( temp );
+    }
     
     return points;
 }

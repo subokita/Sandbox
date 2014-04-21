@@ -161,14 +161,18 @@ void testFaceTracker( string video_filename ) {
         
         /* Try to track / detect face */
         if(tracker.track( frame, faces, levels, false, 20, 1e-6, 1.1, 2, Size(30, 30) )) {
-            for( Point2f point : tracker.points )
-                circle( frame, point, 1, Scalar(0, 0, 255), 1, CV_AA);
+            for( vector<Point2f> points: tracker.allPoints ) {
+                for( Point2f point : points )
+                    circle( frame, point, 1, Scalar(0, 0, 255), 1, CV_AA);
+            }
             
             /* Draw the predefined connections between each points */
             if( draw_connections ){
-                vector<vector<Point>> contours = asContour( tracker.points );
-                for( int i = 0; i < contours.size(); i++ )
-                    drawContours( frame, contours, i, Scalar(0, 255, 0));
+                for( vector<Point2f> points: tracker.allPoints ) {
+                    vector<vector<Point>> contours = asContour( points );
+                    for( int i = 0; i < contours.size(); i++ )
+                        drawContours( frame, contours, i, Scalar(0, 255, 0));
+                }
             }
         }
         
