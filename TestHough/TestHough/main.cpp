@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
     namedWindow( "" );
     moveWindow("", 0, 0);
     
-    Mat image = imread( "/Users/saburookita/Desktop/live-action-patlabor-backdrop.jpg" );
+    Mat image = imread( "/Users/saburookita/Sandbox/TestHough/live-action-patlabor-backdrop.jpg" );
     resize( image, image, Size(), 0.5, 0.5 );
     
     

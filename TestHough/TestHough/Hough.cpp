@@ -40,24 +40,20 @@ void Hough::init(Mat &src){
     this->centerX = image.cols / 2;
     this->centerY = image.rows / 2;
     
-    tbb::parallel_for( 0, image.rows, 1, [&](int y) {
-        uchar * img_ptr = image.ptr<uchar>(y);
-        float dy = y - centerY;
+    /* Find all non zero pixels */
+    vector<Point> non_zero_pixels;
+    cv::findNonZero( image, non_zero_pixels );
+    
+    tbb::parallel_for_each( non_zero_pixels.begin(), non_zero_pixels.end(), [&](Point pixel){
+        float dy = pixel.y - centerY;
+        float dx = pixel.x - centerX;
         
-        for(int x = 0; x < image.cols; x++ ) {
-            /* Since we normalized the image to 0 or 255, ignore zeros */
-            if( img_ptr[x] == 0 )
-                continue;
+        for( int theta = 0; theta < thetaMax; theta++ ) {
+            float r         = dx * cosines[theta] + dy * sines[theta];
+            int rho_index   = rhoRange + r;
             
-            /* convert to rho and theta space */
-            float dx = x - centerX;
-            for( int theta = 0; theta < thetaMax; theta++ ) {
-                float r         = dx * cosines[theta] + dy * sines[theta];
-                int rho_index   = rhoRange + r;
-                
-                /* Increase the accumulator */
-                accum.at<float>(rho_index, theta)++;
-            }
+            /* Increase the accumulator */
+            accum.at<float>(rho_index, theta)++;
         }
     });
 }
