@@ -20,6 +20,57 @@ static Point accumIndex(-1, -1);
 
 static void onMouse( int event, int x, int y, int, void * data );
 
+
+Vec3b HSVtoRGB( float h, float s, float v ) {
+    float r, g, b;
+	int i;
+	float f, p, q, t;
+	if( s == 0 ) {
+		// achromatic (grey)
+		r = g = b = v;
+		return Vec3b( b, g, r );
+	}
+	h /= 60;			// sector 0 to 5
+	i = floor( h );
+	f = h - i;			// factorial part of h
+	p = v * ( 1 - s );
+	q = v * ( 1 - s * f );
+	t = v * ( 1 - s * ( 1 - f ) );
+	switch( i ) {
+		case 0:
+			r = v;
+			g = t;
+			b = p;
+			break;
+		case 1:
+			r = q;
+			g = v;
+			b = p;
+			break;
+		case 2:
+			r = p;
+			g = v;
+			b = t;
+			break;
+		case 3:
+			r = p;
+			g = q;
+			b = v;
+			break;
+		case 4:
+			r = t;
+			g = p;
+			b = v;
+			break;
+		default:		// case 5:
+			r = v;
+			g = p;
+			b = q;
+			break;
+	}
+    return Vec3b( b, g, r );
+}
+
 int main(int argc, const char * argv[]) {
     namedWindow( "" );
     moveWindow("", 0, 0);
@@ -76,8 +127,10 @@ int main(int argc, const char * argv[]) {
         accum = hough.getAccumulationMatrix( threshold );
         accum.convertTo( accum, CV_8UC1 );
         equalizeHist( accum, accum );
+        
+        /* Apply colormap for better representation of the accum matrix */
+        applyColorMap( accum, accum, cv::COLORMAP_JET );
         resize( accum, accum, Size(), 2.0, 0.5 );
-        cvtColor( accum, accum, CV_GRAY2BGR );
         
         /* Draw the lines based on threshold */
         vector<pair<Point, Point>> lines = hough.getLines( threshold );
@@ -106,7 +159,7 @@ int main(int argc, const char * argv[]) {
         addText( appended, str, Point( 10, image.rows + 45 ), font );
         sprintf( str, "Rho: %d   Theta: %d", accumIndex.y - accum.rows / 2, accumIndex.x );
         addText( appended, str, Point( 10, image.rows + 60 ), font );
-        
+
         
         imshow( "", appended );
         char key = waitKey(10);
