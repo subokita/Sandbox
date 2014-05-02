@@ -12,7 +12,7 @@
 Hough::Hough() {
     cosines.reserve( thetaMax );
     sines.reserve( thetaMax );
-    
+
     /* Pre calc the cosines and sines */
     for( int theta = 0; theta < thetaMax; theta++ ){
         float theta_rad = theta * M_PI / 180.0;
@@ -37,6 +37,7 @@ void Hough::init(Mat &src){
     /* Create the accumulator matrix */
     this->rhoRange = MAX( image.cols, image.rows ) * 0.70710678; /* 0.70710678 is SQRT(2.0) / 2.0 */
     this->accum = Mat::zeros( rhoRange * 2, thetaMax, CV_32FC1 );
+    
     this->centerX = image.cols / 2;
     this->centerY = image.rows / 2;
     
@@ -96,12 +97,12 @@ vector<pair<Point, Point>> Hough::getLines( int thresh ) {
     Mat thresholded;
     accum.copyTo( thresholded, accum >= thresh );
     
+    /* Pointer to previous, current and next rows */
     float * prev_row = thresholded.ptr<float>(0),
           * curr_row = thresholded.ptr<float>(1),
           * next_row = thresholded.ptr<float>(2);
     
     tbb::concurrent_vector<pair<Point, Point>> c_lines;
-    
     
     for( int rho_index = 1; rho_index < thresholded.rows-1; rho_index++ ) {
         tbb::parallel_for( 1, thetaMax - 1, 1, [&]( int theta ){
@@ -116,21 +117,8 @@ vector<pair<Point, Point>> Hough::getLines( int thresh ) {
                 }
                 
                 /* Only process if it's local maxima */
-                if( max == curr_row[theta]) {
-                    
-                    /* Convert back to x-y points  */
-                    float rho = rho_index - rhoRange;
-                    
-                    Point point_1;
-                    point_1.x = 0;
-                    point_1.y = (rho - (point_1.x - centerX) * cosines[theta]) / sines[theta] + centerY;
-                    
-                    Point point_2;
-                    point_2.x = imageSize.width;
-                    point_2.y = (rho - (point_2.x - centerX) * cosines[theta]) / sines[theta] + centerY;
-                    c_lines.push_back( pair<Point, Point>( point_1, point_2 ) );
-                }
-                
+                if( max == curr_row[theta])
+                    c_lines.push_back( getLine( rho_index, theta ) );
             }
         });
         
