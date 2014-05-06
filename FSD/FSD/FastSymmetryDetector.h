@@ -1,3 +1,19 @@
+/**
+ Based on algorithm from:
+ 1. Real Time Object Tracking using Reflectional Symmetry and Motion
+ Wai Ho Li and Lindsay Kleeman
+ Intelligent Robotics Research Centre Department of Electrical and Computer Systems Engineering Monash University, Clayton, Victoria 3800, Australia
+ { Wai.Li, Lindsay.Kleeman } @eng.monash.edu.au
+ 
+ 2. Fast Global Reflectional Symmetry Detection for Robotic Grasping and Visual Tracking
+ Wai Ho Li, Alan M. Zhang and Lindsay Kleeman
+ Centre for Perceptive and Intelligent Machines in Complex Environments: Intelligent Robotics
+ Monash University, Clayton
+ Melbourne, Australia
+ {Wai.Li, Alan.Zhang, Lindsay.Kleeman}@eng.monash.edu.au
+ 
+**/
+
 //
 //  FastSymmetryDetector.h
 //  FSD
@@ -5,6 +21,7 @@
 //  Created by Saburo Okita on 02/05/14.
 //  Copyright (c) 2014 Saburo Okita. All rights reserved.
 //
+
 
 #ifndef __FSD__FastSymmetryDetector__
 #define __FSD__FastSymmetryDetector__
