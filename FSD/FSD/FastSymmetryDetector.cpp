@@ -49,9 +49,8 @@ void FastSymmetryDetector::rotateEdges( vector<Point2f>& edges, int theta ) {
     float r3 = rotMatrices[theta].at<float>(1, 1);
     
     /* Reset our row pointers to start of each row in rotated edges matrix */
-    tbb::parallel_for( 0, rhoDivision, 1, [&](int i) {
+    for( int i = 0; i < rhoDivision; i++ )
         reRows[i] = rotEdges.ptr<float>(i);
-    });
     
     float half_diag = cvRound(diagonal) * 0.5;
     float fourth_rho = rhoMax * 0.25;
@@ -104,7 +103,7 @@ void FastSymmetryDetector::vote( Mat& image, int min_pair_dist, int max_pair_dis
                 for( float * x1 = x0 + 1; x1 != col_end; x1++ ) {
                     float dist = fabs( *x1 - *x0 );
 
-                    if( dist > max_dist || dist < min_dist )
+                    if( !within(dist, min_dist, max_dist) )
                         break;
                     
                     int rho_index = static_cast<int>(*x0 + *x1);
@@ -149,8 +148,6 @@ vector<pair<Point, Point>> FastSymmetryDetector::getResult(int no_of_peaks, floa
     
     Mat temp = accum.clone();
     
-    float half_rho_max   = rhoMax * 0.5f;
-    float half_theta_max = thetaMax * 0.5f;
     
     for( int peak = 0; peak < no_of_peaks; peak++ ) {
         /* Find the peak from the Hough accumulation matrix */
@@ -168,9 +165,7 @@ vector<pair<Point, Point>> FastSymmetryDetector::getResult(int no_of_peaks, floa
             break;
         
         /* Convert from Hough space back to x-y space */
-        float rho   = (rho_index - half_rho_max + 0.5f) * (diagonal / (rhoMax - 1.0f));
-        float theta = (theta_index - half_theta_max - 1.0f) * (M_PI / thetaMax);
-        result.push_back( getLine(rho, theta ));
+        result.push_back( getLine(rho_index, theta_index ));
         
         /* Try to zero out the peak and the neighborhood of the peak, so that */
         /* we can move on to find the second highest peak */
@@ -210,7 +205,13 @@ vector<pair<Point, Point>> FastSymmetryDetector::getResult(int no_of_peaks, floa
  * Return a pair of points that describe the line based on the given
  * rho and theta in the Hough space
  */
-pair<Point, Point> FastSymmetryDetector::getLine( float rho, float theta ) {
+pair<Point, Point> FastSymmetryDetector::getLine( float rho_index, float theta_index ) {
+    float half_rho_max   = rhoMax * 0.5f;
+    float half_theta_max = thetaMax * 0.5f;
+    
+    float rho   = (rho_index - half_rho_max + 0.5f) * (diagonal / (rhoMax - 1.0f));
+    float theta = (theta_index - half_theta_max - 1.0f) * (M_PI / thetaMax);
+    
     float cos_theta = cosf( theta );
     float sin_theta = sinf( theta );
     
