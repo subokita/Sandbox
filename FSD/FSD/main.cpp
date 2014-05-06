@@ -78,7 +78,7 @@ void testVideo() {
         /* Get the result and draw the symmetrical line */
         vector<pair<Point, Point>> result = detector.getResult( 1 );
         for( auto point_pair: result )
-            line(frame, point_pair.first, point_pair.second, Scalar(0, 0, 255));
+            line(frame, point_pair.first, point_pair.second, Scalar(0, 0, 255), 3);
 
         /* Convert our Hough accum matrix to heat map */
         accum.convertTo( accum, CV_8UC3 );
