@@ -10,6 +10,10 @@
 #include <tbb/tbb.h>
 #include <numeric>
 
+SLICSuperpixel::SLICSuperpixel() {
+    
+}
+
 SLICSuperpixel::SLICSuperpixel( Mat& src, int no_of_superpixels, int m, int max_iterations ) {
     init( src, no_of_superpixels, m, max_iterations );
 }
@@ -226,6 +230,24 @@ double SLICSuperpixel::calcDistance( ColorRep& c, Vec3b& p, int x, int y ) {
                     +   (c.y - y) * (c.y - y)  );
     
     return sqrt( d_lab + d_xy / (S * S) * (m * m) );
+}
+
+
+int SLICSuperpixel::getS() {
+    return this->S;
+}
+
+int SLICSuperpixel::getM() {
+    return this->m;
+}
+
+/**
+ * Returns a copy of clusters index mapping for each pixel
+ * i.e. each cell in the matrix shows which cluster index it is
+ * assigned to
+ */
+Mat SLICSuperpixel::getClustersIndex() {
+    return clusters.clone();
 }
 
 /**

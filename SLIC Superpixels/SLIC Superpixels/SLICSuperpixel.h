@@ -38,17 +38,22 @@ protected:
     int maxIterations;
     
     inline bool withinRange( int x, int y );
+    double calcDistance( ColorRep& c, Vec3b& p, int x, int y );
+    Point2i findLocalMinimum( Mat& image, Point2i center );
     
 public:
+    SLICSuperpixel();
     SLICSuperpixel( Mat& src, int no_of_superpixels, int m = 10, int max_iterations = 10 );
     
     void init(Mat& src, int no_of_superpixels, int m = 10, int max_iterations = 10);
     void clear();
     void generateSuperPixels();
-    double calcDistance( ColorRep& c, Vec3b& p, int x, int y );
-    Point2i findLocalMinimum( Mat& image, Point2i center );
+    
+    int getS();
+    int getM();
     
     Mat recolor();
+    Mat getClustersIndex();
     vector<ColorRep> getCenters();
     vector<Point2i> getClusterCenters();
     vector<Point2i> getContours();
