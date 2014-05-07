@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <tbb/tbb.h>
 
 using namespace std;
 using namespace cv;
@@ -25,8 +26,8 @@ struct ColorRep;
 
 class SLICSuperpixel {
 protected:
-    vector<vector<int>> clusters;
-    vector<vector<float>> distances;
+    Mat clusters;
+    Mat distances;
     vector<ColorRep> centers;
     vector<int> centerCounts;
     
@@ -48,6 +49,7 @@ public:
     Point2i findLocalMinimum( Mat& image, Point2i center );
     
     Mat recolor();
+    vector<ColorRep> getCenters();
     vector<Point2i> getClusterCenters();
     vector<Point2i> getContours();
     Mat getImage();
@@ -104,6 +106,18 @@ struct ColorRep{
         this->b /= divisor;
         this->x /= divisor;
         this->y /= divisor;
+    }
+    
+    double colorDist( const ColorRep& other ) {
+        return (this->l - other.l) * (this->l - other.l)
+        + (this->a - other.a) * (this->a - other.a)
+        + (this->b - other.b) * (this->b - other.b);
+    }
+    
+    
+    double coordDist( const ColorRep& other ) {
+        return (this->x - other.x) * (this->x - other.x)
+        + (this->y - other.y) * (this->y - other.y);
     }
     
     string toString() {
