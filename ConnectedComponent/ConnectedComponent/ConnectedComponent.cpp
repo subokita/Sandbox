@@ -12,12 +12,14 @@
 using namespace std;
 using namespace cv;
 
-ConnectedComponent::ConnectedComponent( int max_component )
-: maxComponent( max_component ){
+ConnectedComponent::ConnectedComponent( int max_component, int connectivity_type )
+: maxComponent( max_component ),
+  connectivityType( connectivity_type ){
 }
 
 ConnectedComponent::~ConnectedComponent(){
 }
+
 
 /**
  * Apply connected component labeling
@@ -37,6 +39,16 @@ Mat ConnectedComponent::apply( const Mat& image ) {
     nextLabel = 1;
     vector<int> linked(maxComponent);
     
+    
+    /* Function pointer, it makes everything hard to read... */
+    /* Basically use function pointer to decide whether to use 4 or 8 neighbors connectivity */
+    std::function<vector<int> (int*, int*, int)> func_ptr;
+    if( connectivityType == 8 )
+        func_ptr = std::bind(&ConnectedComponent::get8Neighbors, this, placeholders::_1, placeholders::_2, placeholders::_3);
+    else
+        func_ptr = std::bind(&ConnectedComponent::get4Neighbors, this, placeholders::_1, placeholders::_2, placeholders::_3);
+    
+    
     /* Preparing the pointers */
     int * prev_ptr = result.ptr<int>(0);
     int * curr_ptr = result.ptr<int>(1);
@@ -47,10 +59,14 @@ Mat ConnectedComponent::apply( const Mat& image ) {
         for( int x = 1; x < result.cols - 1; x++ ) {
             
             if( curr_ptr[x] != 0 ) {
-                vector<int> neighbors = getNeighbors( curr_ptr, prev_ptr, x );
+                vector<int> neighbors = func_ptr( curr_ptr, prev_ptr, x );
                 
                 if( neighbors.empty() ) {
-                    if( curr_ptr[x+1] == 0 && next_ptr[x-1] == 0 && next_ptr[x] == 0 && next_ptr[x+1] == 0 ) {
+                    if( connectivityType == 8 && curr_ptr[x+1] == 0 && next_ptr[x] == 0 && next_ptr[x-1] == 0 && next_ptr[x+1] == 0 ) {
+                        /* If it's single isolated pixel, why even bother */
+                        curr_ptr[x] = 0;
+                    }
+                    else if( connectivityType == 4 && curr_ptr[x+1] == 0 && next_ptr[x] == 0 ) {
                         /* If it's single isolated pixel, why even bother */
                         curr_ptr[x] = 0;
                     }
@@ -83,6 +99,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
         curr_ptr = next_ptr;
     }
     
+    
     /* Remove our padding borders */
     result = Mat( result, Rect(1, 1, image.cols, image.rows) );
     
@@ -99,6 +116,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
             }
         }
     }
+    
     
     /* Get the unique labels */
     vector<int> labels;
@@ -201,7 +219,7 @@ int ConnectedComponent::disjointFind( int a, vector<int>& parent, vector<int>& l
  *
  * returns a vector of that contains unique neighbor labels
  */
-vector<int> ConnectedComponent::getNeighbors( int * curr_ptr, int * prev_ptr, int x ) {
+vector<int> ConnectedComponent::get8Neighbors( int * curr_ptr, int * prev_ptr, int x ) {
     vector<int> neighbors;
     
     /* Actually we only consider pixel 1, 2, 3, and 4 */
@@ -215,6 +233,31 @@ vector<int> ConnectedComponent::getNeighbors( int * curr_ptr, int * prev_ptr, in
     if( prev_ptr[x+1] != 0 )
         neighbors.push_back( prev_ptr[x+1] );
 
+    if( curr_ptr[x-1] != 0 )
+        neighbors.push_back( curr_ptr[x-1] );
+    
+    /* Reduce to unique labels */
+    /* This is because I'm not using set (it doesn't have random element access) */
+    vector<int> result;
+    if( !neighbors.empty() ) {
+        std::sort( neighbors.begin(), neighbors.end() );
+        std::unique_copy( neighbors.begin(), neighbors.end(), std::back_inserter( result ) );
+    }
+    
+    return result;
+}
+
+/**
+ * Similar to the 8 neighbors, but now only considering two pixels (the top and left ones)
+ */
+vector<int> ConnectedComponent::get4Neighbors( int * curr_ptr, int * prev_ptr, int x ) {
+    vector<int> neighbors;
+    
+    /* Actually we only consider pixel 1, 2, 3, and 4 */
+    /* At this point of time, the logic hasn't traversed thru 5, 6, 7, 8 */
+    if( prev_ptr[x] != 0 )
+        neighbors.push_back( prev_ptr[x] );
+    
     if( curr_ptr[x-1] != 0 )
         neighbors.push_back( curr_ptr[x-1] );
     

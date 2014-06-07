@@ -40,7 +40,7 @@ struct ComponentProperty {
  */
 class ConnectedComponent {
 public:
-    ConnectedComponent( int max_component = 1000 );
+    ConnectedComponent( int max_component = 1000, int connectivity_type = 8 );
     virtual ~ConnectedComponent();
     
     cv::Mat apply( const cv::Mat& image );
@@ -48,15 +48,18 @@ public:
     int getComponentsCount();
     const std::vector<ComponentProperty>& getComponentsProperties();
     
+    std::vector<int> get8Neighbors( int * curr_ptr, int * prev_ptr, int x );
+    std::vector<int> get4Neighbors( int * curr_ptr, int * prev_ptr, int x );
+    
 protected:
     float calculateBlobEccentricity( const cv::Moments& moment );
     cv::Point2f calculateBlobCentroid( const cv::Moments& moment );
     
     void disjointUnion( int a, int b, std::vector<int>& parent  );
     int disjointFind( int a, std::vector<int>& parent, std::vector<int>& labels  );
-    std::vector<int> getNeighbors( int * curr_ptr, int * prev_ptr, int x );
     
 private:
+    int connectivityType;
     int maxComponent;
     int nextLabel;
     std::vector<ComponentProperty> properties;
