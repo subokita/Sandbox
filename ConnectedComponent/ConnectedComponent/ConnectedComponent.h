@@ -54,7 +54,7 @@ protected:
     
     void disjointUnion( int a, int b, std::vector<int>& parent  );
     int disjointFind( int a, std::vector<int>& parent, std::vector<int>& labels  );
-    std::vector<int> getNeighbors( int * curr_ptr, int * prev_ptr, int x, int y, int cols );
+    std::vector<int> getNeighbors( int * curr_ptr, int * prev_ptr, int x );
     
 private:
     int maxComponent;

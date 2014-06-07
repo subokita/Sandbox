@@ -33,7 +33,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
     image.copyTo( Mat( result, Rect(1, 1, image.cols, image.rows) ) );
     result.convertTo( result, CV_32SC1 );
     
-    /* First pass, labeling the regions incrementally */
+    /* First pass: labeling the regions incrementally */
     nextLabel = 1;
     vector<int> linked(maxComponent);
     
@@ -47,7 +47,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
         for( int x = 1; x < result.cols - 1; x++ ) {
             
             if( curr_ptr[x] != 0 ) {
-                vector<int> neighbors = getNeighbors( curr_ptr, prev_ptr, x, y, result.cols );
+                vector<int> neighbors = getNeighbors( curr_ptr, prev_ptr, x );
                 
                 if( neighbors.empty() ) {
                     if( curr_ptr[x+1] == 0 && next_ptr[x-1] == 0 && next_ptr[x] == 0 && next_ptr[x+1] == 0 ) {
@@ -86,7 +86,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
     /* Remove our padding borders */
     result = Mat( result, Rect(1, 1, image.cols, image.rows) );
     
-    /* Second pass merge the equivalent labels */
+    /* Second pass: merge the equivalent labels */
     nextLabel = 1;
     vector<int> temp, labels_set(maxComponent);
     for( int y = 0; y < result.rows; y++ ) {
@@ -201,7 +201,7 @@ int ConnectedComponent::disjointFind( int a, vector<int>& parent, vector<int>& l
  *
  * returns a vector of that contains unique neighbor labels
  */
-vector<int> ConnectedComponent::getNeighbors( int * curr_ptr, int * prev_ptr, int x, int y, int cols ) {
+vector<int> ConnectedComponent::getNeighbors( int * curr_ptr, int * prev_ptr, int x ) {
     vector<int> neighbors;
     
     /* Actually we only consider pixel 1, 2, 3, and 4 */
