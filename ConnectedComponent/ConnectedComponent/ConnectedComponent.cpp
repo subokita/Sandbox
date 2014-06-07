@@ -25,33 +25,46 @@ ConnectedComponent::~ConnectedComponent(){
  * and currently treat black color as background
  */
 Mat ConnectedComponent::apply( const Mat& image ) {
+    CV_Assert( !image.empty() );
     CV_Assert( image.type() == CV_8UC1 );
     
-    Mat result = image.clone();
+    /* Pad the image with 1 pixel border, just to remove boundary checks */
+    Mat result( image.rows + 2, image.cols + 2, CV_8UC1, Scalar(0) );
+    image.copyTo( Mat( result, Rect(1, 1, image.cols, image.rows) ) );
     result.convertTo( result, CV_32SC1 );
     
     /* First pass, labeling the regions incrementally */
     nextLabel = 1;
     vector<int> linked(maxComponent);
     
-    int * prev_ptr = NULL;
-    for( int y = 0; y < result.rows; y++ ) {
-        int * curr_ptr = result.ptr<int>(y);
+    /* Preparing the pointers */
+    int * prev_ptr = result.ptr<int>(0);
+    int * curr_ptr = result.ptr<int>(1);
+    
+    for( int y = 1; y < result.rows - 1; y++ ) {
+        int * next_ptr = result.ptr<int>(y + 1);
         
-        for( int x = 0; x < result.cols; x++ ) {
+        for( int x = 1; x < result.cols - 1; x++ ) {
             
             if( curr_ptr[x] != 0 ) {
                 vector<int> neighbors = getNeighbors( curr_ptr, prev_ptr, x, y, result.cols );
                 
                 if( neighbors.empty() ) {
-                    curr_ptr[x] = nextLabel;
-                    nextLabel++;
-                    
-                    if( nextLabel >= maxComponent ) {
-                        stringstream ss;
-                        ss  << "Current label count [" << (int) nextLabel
+                    if( curr_ptr[x+1] == 0 && next_ptr[x-1] == 0 && next_ptr[x] == 0 && next_ptr[x+1] == 0 ) {
+                        /* If it's single isolated pixel, why even bother */
+                        curr_ptr[x] = 0;
+                    }
+                    else {
+                        /* If it's new unconnected blob */
+                        curr_ptr[x] = nextLabel;
+                        nextLabel++;
+                        
+                        if( nextLabel >= maxComponent ) {
+                            stringstream ss;
+                            ss  << "Current label count [" << (int) nextLabel
                             << "] exceeds maximum no of components [" << maxComponent << "]";
-                        throw std::runtime_error( ss.str() );
+                            throw std::runtime_error( ss.str() );
+                        }
                     }
                 }
                 else {
@@ -64,8 +77,14 @@ Mat ConnectedComponent::apply( const Mat& image ) {
                 }
             }
         }
+        
+        /* Shift the pointers */
         prev_ptr = curr_ptr;
+        curr_ptr = next_ptr;
     }
+    
+    /* Remove our padding borders */
+    result = Mat( result, Rect(1, 1, image.cols, image.rows) );
     
     /* Second pass merge the equivalent labels */
     nextLabel = 1;
@@ -88,6 +107,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
         std::unique_copy( temp.begin(), temp.end(), std::back_inserter( labels ) );
     }
     
+    /* Gather the properties of each blob */
     properties.resize( labels.size() );
     for( int i = 0; i < labels.size(); i++ ) {
         Mat blob        = result == labels[i];
@@ -100,6 +120,11 @@ Mat ConnectedComponent::apply( const Mat& image ) {
         properties[i].centroid     = calculateBlobCentroid( moment );
 
     }
+    
+    /* By default, sort the properties from the area size in descending order */
+    sort( properties.begin(), properties.end(), [=](ComponentProperty& a, ComponentProperty& b){
+        return a.area > b.area;
+    });
     
     
     return result;
@@ -181,20 +206,17 @@ vector<int> ConnectedComponent::getNeighbors( int * curr_ptr, int * prev_ptr, in
     
     /* Actually we only consider pixel 1, 2, 3, and 4 */
     /* At this point of time, the logic hasn't traversed thru 5, 6, 7, 8 */
-    if( prev_ptr != NULL ) {
-        if( prev_ptr[x] != 0 )
-            neighbors.push_back( prev_ptr[x] );
-        
-        if( x > 0 && prev_ptr[x-1] != 0 )
-            neighbors.push_back( prev_ptr[x-1] );
-        
-        if( x < cols - 1 && prev_ptr[x+1] != 0 )
-            neighbors.push_back( prev_ptr[x+1] );
-    }
+    if( prev_ptr[x-1] != 0 )
+        neighbors.push_back( prev_ptr[x-1] );
     
-    if( x > 0 && curr_ptr[x-1] != 0 )
+    if( prev_ptr[x] != 0 )
+        neighbors.push_back( prev_ptr[x] );
+    
+    if( prev_ptr[x+1] != 0 )
+        neighbors.push_back( prev_ptr[x+1] );
+
+    if( curr_ptr[x-1] != 0 )
         neighbors.push_back( curr_ptr[x-1] );
-    
     
     /* Reduce to unique labels */
     /* This is because I'm not using set (it doesn't have random element access) */
