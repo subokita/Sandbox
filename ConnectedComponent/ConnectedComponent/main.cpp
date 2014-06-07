@@ -13,7 +13,7 @@
 using namespace std;
 using namespace cv;
 
-static vector<Vec3b>color_map = {
+const static vector<Vec3b> COLORMAP = {
     Vec3b(  0,   0,   0),
     Vec3b(255,   0,   0),
     Vec3b(  0, 255,   0),
@@ -49,7 +49,7 @@ void test1() {
         int * label_ptr = labels.ptr<int>(y);
         
         for( int x = 0; x < labels.cols; x++ )
-            ptr[x] = color_map[ label_ptr[x] % color_map.size() ];
+            ptr[x] = COLORMAP[ label_ptr[x] % COLORMAP.size() ];
     }
     
     
@@ -62,7 +62,7 @@ void test1() {
     
     /* Append the two images together side by side */
     Mat appended( image.rows, image.cols * 2, CV_8UC3 );
-    image.copyTo( Mat( appended, Rect(0, 0, image.cols, image.rows) ) );
+    image.copyTo  ( Mat( appended, Rect(0, 0, image.cols, image.rows) ) );
     colored.copyTo( Mat( appended, Rect(image.cols, 0, image.cols, image.rows) ) );
     
     imshow("", appended);
@@ -86,13 +86,19 @@ void test2() {
         int * label_ptr = labels.ptr<int>(y);
         
         for( int x = 0; x < labels.cols; x++ )
-            ptr[x] = color_map[ label_ptr[x] % color_map.size() ];
+            ptr[x] = COLORMAP[ label_ptr[x] % COLORMAP.size() ];
     }
     
+    
+    vector<ComponentProperty> props = conn_comp.getComponentsProperties();
+    for( ComponentProperty prop : props )
+        cout << prop << endl;
+    
     cvtColor( image, image, CV_GRAY2BGR );
+    
     /* Append the two images together side by side */
     Mat appended( image.rows, image.cols * 2, CV_8UC3 );
-    image.copyTo( Mat( appended, Rect(0, 0, image.cols, image.rows) ) );
+    image.copyTo  ( Mat( appended, Rect(0, 0, image.cols, image.rows) ) );
     colored.copyTo( Mat( appended, Rect(image.cols, 0, image.cols, image.rows) ) );
     
     imshow( "", appended );
@@ -101,7 +107,7 @@ void test2() {
 
 int main(int argc, const char * argv[])
 {
-    test1();
+//    test1();
     test2();
     
     return 0;

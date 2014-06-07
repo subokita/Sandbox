@@ -1,6 +1,6 @@
 //
 //  ConnectedComponent.cpp
-//  RobustTextDetection
+//  ConnectedComponent
 //
 //  Created by Saburo Okita on 06/06/14.
 //  Copyright (c) 2014 Saburo Okita. All rights reserved.
@@ -81,23 +81,62 @@ Mat ConnectedComponent::apply( const Mat& image ) {
         }
     }
     
-    
-    labels.clear();
+    /* Get the unique labels */
+    vector<int> labels;
     if( !temp.empty() ) {
         std::sort( temp.begin(), temp.end() );
         std::unique_copy( temp.begin(), temp.end(), std::back_inserter( labels ) );
     }
     
+    properties.resize( labels.size() );
+    for( int i = 0; i < labels.size(); i++ ) {
+        Mat blob        = result == labels[i];
+        Moments moment  = cv::moments( blob );
+        
+        properties[i].labelID   = labels[i];
+        properties[i].area      = countNonZero( blob );
+        
+        properties[i].eccentricity = calculateBlobEccentricity( moment );
+        properties[i].centroid     = calculateBlobCentroid( moment );
+
+    }
+    
+    
     return result;
+}
+
+/**
+ * From the given blob's moments, calculate its eccentricity
+ * It's implemented based on the formula shown on http://en.wikipedia.org/wiki/Image_moment#Examples_2
+ * which includes using the blob's central moments to find the eigenvalues
+ */
+float ConnectedComponent::calculateBlobEccentricity( const Moments& moment ) {
+    double left_comp  = (moment.nu20 + moment.nu02) / 2.0;
+    double right_comp = sqrt( (4 * moment.nu11 * moment.nu11) + (moment.nu20 - moment.nu02)*(moment.nu20 - moment.nu02) ) / 2.0;
+    
+    double eig_val_1 = left_comp + right_comp;
+    double eig_val_2 = left_comp - right_comp;
+    
+    return sqrtf( 1.0 - (eig_val_2 / eig_val_1) );
+}
+
+/**
+ * From the given blob moment, calculate its centroid
+ */
+Point2f ConnectedComponent::calculateBlobCentroid( const Moments& moment ) {
+    return Point2f( moment.m10 / moment.m00, moment.m01 / moment.m00 );
 }
 
 /**
  * Returns the number of connected components found
  */
 int ConnectedComponent::getComponentsCount() {
-    return static_cast<int>(labels.size());
+    return static_cast<int>( properties.size() );
 }
 
+const vector<ComponentProperty>& ConnectedComponent::getComponentsProperties() {
+    return properties;
+}
 
 /**
  * Disjoint set union function, taken from
