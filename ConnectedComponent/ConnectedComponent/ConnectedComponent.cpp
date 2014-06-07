@@ -28,7 +28,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
     CV_Assert( !image.empty() );
     CV_Assert( image.type() == CV_8UC1 );
     
-    /* Pad the image with 1 pixel border, just to remove boundary checks */
+    /* Padding the image with 1 pixel border, just to remove boundary checks */
     Mat result( image.rows + 2, image.cols + 2, CV_8UC1, Scalar(0) );
     image.copyTo( Mat( result, Rect(1, 1, image.cols, image.rows) ) );
     result.convertTo( result, CV_32SC1 );
