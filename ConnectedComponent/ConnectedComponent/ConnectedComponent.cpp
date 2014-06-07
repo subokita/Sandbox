@@ -7,51 +7,59 @@
 //
 
 #include "ConnectedComponent.h"
+#include <stdexcept>
 
 using namespace std;
 using namespace cv;
 
-ConnectedComponent::ConnectedComponent(){
+ConnectedComponent::ConnectedComponent( int max_component )
+: maxComponent( max_component ){
 }
 
 ConnectedComponent::~ConnectedComponent(){
 }
 
 /**
- * Apply connected component labelling
- * it only works for maximum 255 connected components
+ * Apply connected component labeling
+ * it only works for predefined maximum no of connected components
  * and currently treat black color as background
  */
 Mat ConnectedComponent::apply( const Mat& image ) {
     CV_Assert( image.type() == CV_8UC1 );
     
     Mat result = image.clone();
-
-    /* First pass, labelling the regions incrementally */
+    result.convertTo( result, CV_32SC1 );
+    
+    /* First pass, labeling the regions incrementally */
     nextLabel = 1;
-    vector<uchar> linked(255);
-
-    uchar * prev_ptr = NULL;
+    vector<int> linked(maxComponent);
+    
+    int * prev_ptr = NULL;
     for( int y = 0; y < result.rows; y++ ) {
-        uchar * curr_ptr = result.ptr<uchar>(y);
+        int * curr_ptr = result.ptr<int>(y);
         
         for( int x = 0; x < result.cols; x++ ) {
             
             if( curr_ptr[x] != 0 ) {
-                vector<uchar> neighbors = getNeighbors( curr_ptr, prev_ptr, x, y, result.cols );
+                vector<int> neighbors = getNeighbors( curr_ptr, prev_ptr, x, y, result.cols );
                 
                 if( neighbors.empty() ) {
                     curr_ptr[x] = nextLabel;
                     nextLabel++;
                     
-                    CV_Assert( nextLabel < 255 );
+                    if( nextLabel >= maxComponent ) {
+                        stringstream ss;
+                        ss  << "Current label count [" << (int) nextLabel
+                            << "] exceeds maximum no of components [" << maxComponent << "]";
+                        throw std::runtime_error( ss.str() );
+                    }
                 }
                 else {
                     /* Use the minimum label out from the neighbors */
                     int min_index = (int) (min_element( neighbors.begin(), neighbors.end() ) - neighbors.begin());
                     curr_ptr[x]   = neighbors[min_index];
                     
-                    for( uchar neighbor: neighbors )
+                    for( int neighbor: neighbors )
                         disjointUnion( curr_ptr[x], neighbor, linked );
                 }
             }
@@ -61,9 +69,9 @@ Mat ConnectedComponent::apply( const Mat& image ) {
     
     /* Second pass merge the equivalent labels */
     nextLabel = 1;
-    vector<uchar> temp, labels_set(255);
+    vector<int> temp, labels_set(maxComponent);
     for( int y = 0; y < result.rows; y++ ) {
-        uchar * curr_ptr = result.ptr<uchar>(y);
+        int * curr_ptr = result.ptr<int>(y);
         
         for( int x = 0; x < result.cols; x++ ) {
             if( curr_ptr[x] != 0 ) {
@@ -95,7 +103,7 @@ int ConnectedComponent::getComponentsCount() {
  * Disjoint set union function, taken from
  * https://courses.cs.washington.edu/courses/cse576/02au/homework/hw3/ConnectComponent.java
  */
-void ConnectedComponent::disjointUnion( uchar a, uchar b, vector<uchar>& parent  ) {
+void ConnectedComponent::disjointUnion( int a, int b, vector<int>& parent  ) {
     while( parent[a] > 0 )
         a = parent[a];
     while( parent[b] > 0 )
@@ -113,7 +121,7 @@ void ConnectedComponent::disjointUnion( uchar a, uchar b, vector<uchar>& parent 
  * Disjoint set find function, taken from
  * https://courses.cs.washington.edu/courses/cse576/02au/homework/hw3/ConnectComponent.java
  */
-uchar ConnectedComponent::disjointFind( uchar a, vector<uchar>& parent, vector<uchar>& labels ) {
+int ConnectedComponent::disjointFind( int a, vector<int>& parent, vector<int>& labels ) {
     while( parent[a] > 0 )
         a = parent[a];
     if( labels[a] == 0 )
@@ -129,8 +137,8 @@ uchar ConnectedComponent::disjointFind( uchar a, vector<uchar>& parent, vector<u
  *
  * returns a vector of that contains unique neighbor labels
  */
-vector<uchar> ConnectedComponent::getNeighbors( uchar * curr_ptr, uchar * prev_ptr, int x, int y, int cols ) {
-    vector<uchar> neighbors;
+vector<int> ConnectedComponent::getNeighbors( int * curr_ptr, int * prev_ptr, int x, int y, int cols ) {
+    vector<int> neighbors;
     
     /* Actually we only consider pixel 1, 2, 3, and 4 */
     /* At this point of time, the logic hasn't traversed thru 5, 6, 7, 8 */
@@ -151,7 +159,7 @@ vector<uchar> ConnectedComponent::getNeighbors( uchar * curr_ptr, uchar * prev_p
     
     /* Reduce to unique labels */
     /* This is because I'm not using set (it doesn't have random element access) */
-    vector<uchar> result;
+    vector<int> result;
     if( !neighbors.empty() ) {
         std::sort( neighbors.begin(), neighbors.end() );
         std::unique_copy( neighbors.begin(), neighbors.end(), std::back_inserter( result ) );

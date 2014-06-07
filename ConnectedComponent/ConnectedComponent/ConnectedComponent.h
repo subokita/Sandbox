@@ -14,7 +14,7 @@
 
 
 /**
- * Connected component labelling using 8-connected neighbors, based on
+ * Connected component labeling using 8-connected neighbors, based on
  * http://en.wikipedia.org/wiki/Connected-component_labeling
  *
  * with disjoint union and find functions adapted from :
@@ -22,19 +22,20 @@
  */
 class ConnectedComponent {
 public:
-    ConnectedComponent();
+    ConnectedComponent( int max_component = 1000 );
     virtual ~ConnectedComponent();
     cv::Mat apply( const cv::Mat& image );
     int getComponentsCount();
     
 protected:
-    void disjointUnion( uchar a, uchar b, std::vector<uchar>& parent  );
-    uchar disjointFind( uchar a, std::vector<uchar>& parent, std::vector<uchar>& labels  );
-    std::vector<uchar> getNeighbors( uchar * curr_ptr, uchar * prev_ptr, int x, int y, int cols );
-
+    void disjointUnion( int a, int b, std::vector<int>& parent  );
+    int disjointFind( int a, std::vector<int>& parent, std::vector<int>& labels  );
+    std::vector<int> getNeighbors( int * curr_ptr, int * prev_ptr, int x, int y, int cols );
+    
 private:
-    uchar nextLabel;
-    std::vector<uchar> labels;
+    int maxComponent;
+    int nextLabel;
+    std::vector<int> labels;
 };
 
 #endif /* defined(__RobustTextDetection__ConnectedComponent__) */

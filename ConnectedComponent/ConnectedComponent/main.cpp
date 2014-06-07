@@ -40,17 +40,20 @@ void test1() {
     
     /* Apply connected component labelling */
     ConnectedComponent conn_comp;
-    Mat label = conn_comp.apply( image );
-    cvtColor( label, label, CV_GRAY2BGR );
+    Mat labels = conn_comp.apply( image );
     
     /* Recolor the labels */
-    for( int y = 0; y < label.rows; y++ ) {
-        Vec3b * ptr = label.ptr<Vec3b>(y);
-        for( int x = 0; x < label.cols; x++ )
-            ptr[x] = color_map[ptr[x][0] % color_map.size()];
+    Mat colored( image.size(), CV_8UC3, Scalar::all(0) );
+    for( int y = 0; y < labels.rows; y++ ) {
+        Vec3b * ptr     = colored.ptr<Vec3b>(y);
+        int * label_ptr = labels.ptr<int>(y);
+        
+        for( int x = 0; x < labels.cols; x++ )
+            ptr[x] = color_map[ label_ptr[x] % color_map.size() ];
     }
     
-    resize( label, label, Size(), 30.0, 30.0, CV_INTER_NN );
+    
+    resize( colored, colored, Size(), 30.0, 30.0, CV_INTER_NN );
     
     /* Convert our original image into appropriate size and type */
     image = image * 255;
@@ -60,7 +63,7 @@ void test1() {
     /* Append the two images together side by side */
     Mat appended( image.rows, image.cols * 2, CV_8UC3 );
     image.copyTo( Mat( appended, Rect(0, 0, image.cols, image.rows) ) );
-    label.copyTo( Mat( appended, Rect(image.cols, 0, image.cols, image.rows) ) );
+    colored.copyTo( Mat( appended, Rect(image.cols, 0, image.cols, image.rows) ) );
     
     imshow("", appended);
     while( waitKey(10) != 'q' );
@@ -74,22 +77,23 @@ void test2() {
     threshold( image, binary, 200.0, 1.0, CV_THRESH_BINARY_INV );
     
     ConnectedComponent conn_comp;
-    Mat label = conn_comp.apply( binary );
-    
-    cvtColor( label, label, CV_GRAY2BGR );
-    
+    Mat labels = conn_comp.apply( binary );
+
     /* Recolor the labels */
-    for( int y = 0; y < label.rows; y++ ) {
-        Vec3b * ptr = label.ptr<Vec3b>(y);
-        for( int x = 0; x < label.cols; x++ )
-            ptr[x] = color_map[ptr[x][0] % color_map.size()];
+    Mat colored( image.size(), CV_8UC3, Scalar::all(0) );
+    for( int y = 0; y < labels.rows; y++ ) {
+        Vec3b * ptr     = colored.ptr<Vec3b>(y);
+        int * label_ptr = labels.ptr<int>(y);
+        
+        for( int x = 0; x < labels.cols; x++ )
+            ptr[x] = color_map[ label_ptr[x] % color_map.size() ];
     }
     
     cvtColor( image, image, CV_GRAY2BGR );
     /* Append the two images together side by side */
     Mat appended( image.rows, image.cols * 2, CV_8UC3 );
     image.copyTo( Mat( appended, Rect(0, 0, image.cols, image.rows) ) );
-    label.copyTo( Mat( appended, Rect(image.cols, 0, image.cols, image.rows) ) );
+    colored.copyTo( Mat( appended, Rect(image.cols, 0, image.cols, image.rows) ) );
     
     imshow( "", appended );
     while( waitKey(10) != 'q' );
