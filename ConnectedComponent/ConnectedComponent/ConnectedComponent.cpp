@@ -129,6 +129,7 @@ Mat ConnectedComponent::apply( const Mat& image ) {
     properties.resize( labels.size() );
     for( int i = 0; i < labels.size(); i++ ) {
         Mat blob        = result == labels[i];
+        
         Moments moment  = cv::moments( blob );
         
         properties[i].labelID   = labels[i];
@@ -136,8 +137,20 @@ Mat ConnectedComponent::apply( const Mat& image ) {
         
         properties[i].eccentricity = calculateBlobEccentricity( moment );
         properties[i].centroid     = calculateBlobCentroid( moment );
-
+        
+        /* Find the solidity of the blob from blob area / convex area */
+        vector<vector<Point>> contours;
+        findContours( blob, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE );
+        
+        if( !contours.empty() ) {
+            vector<vector<Point>> hull(1);
+            convexHull( contours[0], hull[0] );
+            
+            /* ... I hope this is correct ... */
+            properties[i].solidity = properties[i].area / contourArea( hull[0] );
+        }
     }
+    
     
     /* By default, sort the properties from the area size in descending order */
     sort( properties.begin(), properties.end(), [=](ComponentProperty& a, ComponentProperty& b){

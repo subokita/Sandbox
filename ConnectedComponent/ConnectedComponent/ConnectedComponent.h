@@ -19,6 +19,7 @@ struct ComponentProperty {
     int labelID;
     int area;
     float eccentricity;
+    float solidity;
     cv::Point2f centroid;
 
     friend std::ostream &operator <<( std::ostream& os, const ComponentProperty & prop ) {
@@ -26,6 +27,7 @@ struct ComponentProperty {
         os << "         Area: " << prop.area         << "\n";
         os << "     Centroid: " << prop.centroid     << "\n";
         os << " Eccentricity: " << prop.eccentricity << "\n";
+        os << "     Solidity: " << prop.solidity     << "\n";
         return os;
     }
 };
