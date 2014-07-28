@@ -263,7 +263,7 @@ Mat SLICSuperpixel::getImage() {
 Mat SLICSuperpixel::recolor() {
     Mat temp = image.clone();
     
-    vector<Vec3f> colors( centers.size() );
+    vector<Vec3b> colors( centers.size() );
     
     /* Accumulate the colors for each cluster */
     for( int y = 0; y < temp.rows; y++ ) {
