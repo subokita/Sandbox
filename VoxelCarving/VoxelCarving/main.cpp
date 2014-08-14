@@ -4,24 +4,24 @@
 //
 //  Created by Saburo Okita on 12/08/14.
 //  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
+
 
 #include <iostream>
-#include <opencv2/opencv.hpp>
-
 #include <iostream>
 #include <sstream>
 #include <fstream>
 
+#include <opencv2/opencv.hpp>
 #include "VoxelGrid.h"
 
 using namespace std;
 using namespace cv;
 
-
 void replaceAll(std::string& str, const std::string& from, const std::string& to);
 vector<Mat> readCalibFile( const string path, const string filename );
 
+// Special thanks to Nghia Ho for his voxel carving code at http://nghiaho.com/?p=2124
+// 3D photography dataset can be obtained from http://www.cs.wustl.edu/~furukawa/research/mview/index.html
 int main(int argc, const char * argv[])
 {
     const string path = "/Users/saburookita/Sandbox/VoxelCarving/";
