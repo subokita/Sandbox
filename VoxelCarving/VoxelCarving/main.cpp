@@ -28,17 +28,19 @@ int main(int argc, const char * argv[])
     namedWindow("");
     moveWindow("", 0, 0);
 
+    /* First get the projection matrices from the provided matlab files */
     vector<Mat> projection_matrices;
-
     const vector<string> calib_filenames = { "camera0.m", "camera1.m", "camera2.m", };
     for( string filename: calib_filenames ) {
         vector<Mat> temp = readCalibFile( path + "morpheus/calib", filename );
         projection_matrices.insert(projection_matrices.end(), temp.begin(), temp.end() );
     }
     
-    vector<Mat> images, masks;
     
+    vector<Mat> images, masks;
     char temp_str[255];
+    
+    /* Then collect all the images and masks (which is basically simple segmentation by removing white background) */
     for( int k = 0; k < projection_matrices.size(); k++ ) {
         sprintf(temp_str, (path + "morpheus/visualize/%02d.jpg").c_str(), k );
         Mat img = imread(temp_str);
