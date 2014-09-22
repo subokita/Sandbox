@@ -109,6 +109,7 @@ int main(int argc, const char * argv[]) {
     
     Mat dist_coeff = (Mat_<double>(1, 5) << -0.159685, 0.037437, -0.000708, -0.000551, 0.000000);
     
+    
     Mat out = sfm( img1, img2, cam_matrix, dist_coeff );
 
     /* Convert the matrix of homogenous coords to our glm::vec3 representation */

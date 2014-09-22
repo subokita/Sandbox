@@ -25,8 +25,8 @@ void testImage();
 void testVideo();
 
 int main(int argc, const char * argv[]) {
-    testImage();
-//    testVideo();
+//    testImage();
+    testVideo();
     
     return 0;
 }

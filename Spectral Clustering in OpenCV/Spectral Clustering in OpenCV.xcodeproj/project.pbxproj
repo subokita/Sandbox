@@ -200,9 +200,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/opencv/2.4.7.1/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.7.1/lib;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.8.2/lib;
 				OTHER_LDFLAGS = (
 					"-lopencv_core",
 					"-lopencv_highgui",
@@ -227,9 +227,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/opencv/2.4.7.1/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.7.1/lib;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.8.2/lib;
 				OTHER_LDFLAGS = (
 					"-lopencv_core",
 					"-lopencv_highgui",
@@ -267,6 +267,7 @@
 				A84928C318E9503100FC674F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

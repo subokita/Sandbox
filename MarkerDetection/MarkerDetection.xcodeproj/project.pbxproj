@@ -7,22 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A86B70F218E5A29400A79679 /* Arcball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70DF18E5A29400A79679 /* Arcball.cpp */; };
-		A86B70F318E5A29400A79679 /* BasicShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70E118E5A29400A79679 /* BasicShape.cpp */; };
-		A86B70F418E5A29400A79679 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70E318E5A29400A79679 /* Cube.cpp */; };
-		A86B70F518E5A29400A79679 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70E618E5A29400A79679 /* Plane.cpp */; };
-		A86B70F618E5A29400A79679 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70E818E5A29400A79679 /* Shader.cpp */; };
-		A86B70F718E5A29400A79679 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70EA18E5A29400A79679 /* Sphere.cpp */; };
-		A86B70F818E5A29400A79679 /* Torus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70EC18E5A29400A79679 /* Torus.cpp */; };
-		A86B70F918E5A29400A79679 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70EE18E5A29400A79679 /* Util.cpp */; };
-		A86B70FA18E5A29400A79679 /* Viewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70F018E5A29400A79679 /* Viewer.cpp */; };
 		A86B70FD18E5A2C700A79679 /* MarkerDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86B70FB18E5A2C700A79679 /* MarkerDetector.cpp */; };
+		A8AA5C6D18E6F50B00003F18 /* Arcball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C5A18E6F50B00003F18 /* Arcball.cpp */; };
+		A8AA5C6E18E6F50B00003F18 /* BasicShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C5C18E6F50B00003F18 /* BasicShape.cpp */; };
+		A8AA5C6F18E6F50B00003F18 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C5E18E6F50B00003F18 /* Cube.cpp */; };
+		A8AA5C7018E6F50B00003F18 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C6118E6F50B00003F18 /* Plane.cpp */; };
+		A8AA5C7118E6F50B00003F18 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C6318E6F50B00003F18 /* Shader.cpp */; };
+		A8AA5C7218E6F50B00003F18 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C6518E6F50B00003F18 /* Sphere.cpp */; };
+		A8AA5C7318E6F50B00003F18 /* Torus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C6718E6F50B00003F18 /* Torus.cpp */; };
+		A8AA5C7418E6F50B00003F18 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C6918E6F50B00003F18 /* Util.cpp */; };
+		A8AA5C7518E6F50B00003F18 /* Viewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5C6B18E6F50B00003F18 /* Viewer.cpp */; };
 		A8B4FE3718E4206300C61711 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B4FE3618E4206300C61711 /* main.cpp */; };
 		A8B4FE3918E4206300C61711 /* MarkerDetection.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8B4FE3818E4206300C61711 /* MarkerDetection.1 */; };
 		A8B4FE4318E4223300C61711 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B4FE4218E4223300C61711 /* OpenGL.framework */; };
 		A8B4FE4618E4227000C61711 /* libfreeimage-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B4FE4418E4227000C61711 /* libfreeimage-3.15.4.dylib */; };
 		A8B4FE4718E4227000C61711 /* libfreeimageplus-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B4FE4518E4227000C61711 /* libfreeimageplus-3.15.4.dylib */; };
 		A8B4FE4918E4227C00C61711 /* libglfw3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B4FE4818E4227C00C61711 /* libglfw3.3.0.dylib */; };
+		A8B9BF1618EAA03E002C55D0 /* Calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B9BF1418EAA03E002C55D0 /* Calibration.cpp */; };
+		A8E8D6D318E6F4CD00A75F2D /* ARViewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E8D6D118E6F4CD00A75F2D /* ARViewer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,27 +41,31 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A86B70DF18E5A29400A79679 /* Arcball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arcball.cpp; sourceTree = "<group>"; };
-		A86B70E018E5A29400A79679 /* Arcball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arcball.h; sourceTree = "<group>"; };
-		A86B70E118E5A29400A79679 /* BasicShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicShape.cpp; sourceTree = "<group>"; };
-		A86B70E218E5A29400A79679 /* BasicShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicShape.h; sourceTree = "<group>"; };
-		A86B70E318E5A29400A79679 /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
-		A86B70E418E5A29400A79679 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
-		A86B70E518E5A29400A79679 /* GLVHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVHeader.h; sourceTree = "<group>"; };
-		A86B70E618E5A29400A79679 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
-		A86B70E718E5A29400A79679 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
-		A86B70E818E5A29400A79679 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
-		A86B70E918E5A29400A79679 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
-		A86B70EA18E5A29400A79679 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
-		A86B70EB18E5A29400A79679 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
-		A86B70EC18E5A29400A79679 /* Torus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Torus.cpp; sourceTree = "<group>"; };
-		A86B70ED18E5A29400A79679 /* Torus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Torus.h; sourceTree = "<group>"; };
-		A86B70EE18E5A29400A79679 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
-		A86B70EF18E5A29400A79679 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
-		A86B70F018E5A29400A79679 /* Viewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Viewer.cpp; sourceTree = "<group>"; };
-		A86B70F118E5A29400A79679 /* Viewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Viewer.h; sourceTree = "<group>"; };
 		A86B70FB18E5A2C700A79679 /* MarkerDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarkerDetector.cpp; sourceTree = "<group>"; };
 		A86B70FC18E5A2C700A79679 /* MarkerDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerDetector.h; sourceTree = "<group>"; };
+		A8AA5C5A18E6F50B00003F18 /* Arcball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arcball.cpp; sourceTree = "<group>"; };
+		A8AA5C5B18E6F50B00003F18 /* Arcball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arcball.h; sourceTree = "<group>"; };
+		A8AA5C5C18E6F50B00003F18 /* BasicShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicShape.cpp; sourceTree = "<group>"; };
+		A8AA5C5D18E6F50B00003F18 /* BasicShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicShape.h; sourceTree = "<group>"; };
+		A8AA5C5E18E6F50B00003F18 /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
+		A8AA5C5F18E6F50B00003F18 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
+		A8AA5C6018E6F50B00003F18 /* GLVHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVHeader.h; sourceTree = "<group>"; };
+		A8AA5C6118E6F50B00003F18 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
+		A8AA5C6218E6F50B00003F18 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		A8AA5C6318E6F50B00003F18 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		A8AA5C6418E6F50B00003F18 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		A8AA5C6518E6F50B00003F18 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
+		A8AA5C6618E6F50B00003F18 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
+		A8AA5C6718E6F50B00003F18 /* Torus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Torus.cpp; sourceTree = "<group>"; };
+		A8AA5C6818E6F50B00003F18 /* Torus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Torus.h; sourceTree = "<group>"; };
+		A8AA5C6918E6F50B00003F18 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
+		A8AA5C6A18E6F50B00003F18 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		A8AA5C6B18E6F50B00003F18 /* Viewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Viewer.cpp; sourceTree = "<group>"; };
+		A8AA5C6C18E6F50B00003F18 /* Viewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Viewer.h; sourceTree = "<group>"; };
+		A8AA5C7818E6F7A200003F18 /* backgroundPass.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = backgroundPass.vsh; sourceTree = "<group>"; };
+		A8AA5C7918E6F7AB00003F18 /* backgroundPass.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = backgroundPass.fsh; sourceTree = "<group>"; };
+		A8AB21E418E84ECD0043122F /* objectPass.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = objectPass.fsh; sourceTree = "<group>"; };
+		A8AB21E518E84ECD0043122F /* objectPass.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = objectPass.vsh; sourceTree = "<group>"; };
 		A8B4FE3318E4206300C61711 /* MarkerDetection */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MarkerDetection; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B4FE3618E4206300C61711 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A8B4FE3818E4206300C61711 /* MarkerDetection.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MarkerDetection.1; sourceTree = "<group>"; };
@@ -67,6 +73,10 @@
 		A8B4FE4418E4227000C61711 /* libfreeimage-3.15.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfreeimage-3.15.4.dylib"; path = "/usr/local/Cellar/freeimage/3.15.4/lib/libfreeimage-3.15.4.dylib"; sourceTree = "<absolute>"; };
 		A8B4FE4518E4227000C61711 /* libfreeimageplus-3.15.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfreeimageplus-3.15.4.dylib"; path = "/usr/local/Cellar/freeimage/3.15.4/lib/libfreeimageplus-3.15.4.dylib"; sourceTree = "<absolute>"; };
 		A8B4FE4818E4227C00C61711 /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = /usr/local/Cellar/glfw3/3.0.3/lib/libglfw3.3.0.dylib; sourceTree = "<absolute>"; };
+		A8B9BF1418EAA03E002C55D0 /* Calibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Calibration.cpp; sourceTree = "<group>"; };
+		A8B9BF1518EAA03E002C55D0 /* Calibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calibration.h; sourceTree = "<group>"; };
+		A8E8D6D118E6F4CD00A75F2D /* ARViewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ARViewer.cpp; sourceTree = "<group>"; };
+		A8E8D6D218E6F4CD00A75F2D /* ARViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,36 +94,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A86B70DE18E5A29400A79679 /* glv */ = {
+		A8AA5C5918E6F50B00003F18 /* glv */ = {
 			isa = PBXGroup;
 			children = (
-				A86B70DF18E5A29400A79679 /* Arcball.cpp */,
-				A86B70E018E5A29400A79679 /* Arcball.h */,
-				A86B70E118E5A29400A79679 /* BasicShape.cpp */,
-				A86B70E218E5A29400A79679 /* BasicShape.h */,
-				A86B70E318E5A29400A79679 /* Cube.cpp */,
-				A86B70E418E5A29400A79679 /* Cube.h */,
-				A86B70E518E5A29400A79679 /* GLVHeader.h */,
-				A86B70E618E5A29400A79679 /* Plane.cpp */,
-				A86B70E718E5A29400A79679 /* Plane.h */,
-				A86B70E818E5A29400A79679 /* Shader.cpp */,
-				A86B70E918E5A29400A79679 /* Shader.h */,
-				A86B70EA18E5A29400A79679 /* Sphere.cpp */,
-				A86B70EB18E5A29400A79679 /* Sphere.h */,
-				A86B70EC18E5A29400A79679 /* Torus.cpp */,
-				A86B70ED18E5A29400A79679 /* Torus.h */,
-				A86B70EE18E5A29400A79679 /* Util.cpp */,
-				A86B70EF18E5A29400A79679 /* Util.h */,
-				A86B70F018E5A29400A79679 /* Viewer.cpp */,
-				A86B70F118E5A29400A79679 /* Viewer.h */,
+				A8AA5C5A18E6F50B00003F18 /* Arcball.cpp */,
+				A8AA5C5B18E6F50B00003F18 /* Arcball.h */,
+				A8AA5C5C18E6F50B00003F18 /* BasicShape.cpp */,
+				A8AA5C5D18E6F50B00003F18 /* BasicShape.h */,
+				A8AA5C5E18E6F50B00003F18 /* Cube.cpp */,
+				A8AA5C5F18E6F50B00003F18 /* Cube.h */,
+				A8AA5C6018E6F50B00003F18 /* GLVHeader.h */,
+				A8AA5C6118E6F50B00003F18 /* Plane.cpp */,
+				A8AA5C6218E6F50B00003F18 /* Plane.h */,
+				A8AA5C6318E6F50B00003F18 /* Shader.cpp */,
+				A8AA5C6418E6F50B00003F18 /* Shader.h */,
+				A8AA5C6518E6F50B00003F18 /* Sphere.cpp */,
+				A8AA5C6618E6F50B00003F18 /* Sphere.h */,
+				A8AA5C6718E6F50B00003F18 /* Torus.cpp */,
+				A8AA5C6818E6F50B00003F18 /* Torus.h */,
+				A8AA5C6918E6F50B00003F18 /* Util.cpp */,
+				A8AA5C6A18E6F50B00003F18 /* Util.h */,
+				A8AA5C6B18E6F50B00003F18 /* Viewer.cpp */,
+				A8AA5C6C18E6F50B00003F18 /* Viewer.h */,
 			);
-			path = glv;
+			name = glv;
+			path = MarkerDetection/glv;
+			sourceTree = "<group>";
+		};
+		A8AA5C7718E6F69500003F18 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				A8AB21E418E84ECD0043122F /* objectPass.fsh */,
+				A8AB21E518E84ECD0043122F /* objectPass.vsh */,
+				A8AA5C7818E6F7A200003F18 /* backgroundPass.vsh */,
+				A8AA5C7918E6F7AB00003F18 /* backgroundPass.fsh */,
+			);
+			path = shaders;
 			sourceTree = "<group>";
 		};
 		A8B4FE2A18E4206300C61711 = {
 			isa = PBXGroup;
 			children = (
-				A86B70DE18E5A29400A79679 /* glv */,
+				A8B9BF1418EAA03E002C55D0 /* Calibration.cpp */,
+				A8B9BF1518EAA03E002C55D0 /* Calibration.h */,
+				A8AA5C5918E6F50B00003F18 /* glv */,
 				A8B4FE4118E4222900C61711 /* lib */,
 				A8B4FE3518E4206300C61711 /* MarkerDetection */,
 				A8B4FE3418E4206300C61711 /* Products */,
@@ -131,10 +155,13 @@
 		A8B4FE3518E4206300C61711 /* MarkerDetection */ = {
 			isa = PBXGroup;
 			children = (
+				A8AA5C7718E6F69500003F18 /* shaders */,
 				A8B4FE3618E4206300C61711 /* main.cpp */,
 				A86B70FB18E5A2C700A79679 /* MarkerDetector.cpp */,
 				A86B70FC18E5A2C700A79679 /* MarkerDetector.h */,
 				A8B4FE3818E4206300C61711 /* MarkerDetection.1 */,
+				A8E8D6D118E6F4CD00A75F2D /* ARViewer.cpp */,
+				A8E8D6D218E6F4CD00A75F2D /* ARViewer.h */,
 			);
 			path = MarkerDetection;
 			sourceTree = "<group>";
@@ -201,17 +228,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A86B70F918E5A29400A79679 /* Util.cpp in Sources */,
-				A86B70F418E5A29400A79679 /* Cube.cpp in Sources */,
+				A8B9BF1618EAA03E002C55D0 /* Calibration.cpp in Sources */,
+				A8AA5C6F18E6F50B00003F18 /* Cube.cpp in Sources */,
+				A8AA5C7318E6F50B00003F18 /* Torus.cpp in Sources */,
+				A8AA5C7218E6F50B00003F18 /* Sphere.cpp in Sources */,
 				A8B4FE3718E4206300C61711 /* main.cpp in Sources */,
+				A8AA5C7118E6F50B00003F18 /* Shader.cpp in Sources */,
+				A8AA5C7518E6F50B00003F18 /* Viewer.cpp in Sources */,
+				A8AA5C6E18E6F50B00003F18 /* BasicShape.cpp in Sources */,
+				A8AA5C7418E6F50B00003F18 /* Util.cpp in Sources */,
+				A8AA5C6D18E6F50B00003F18 /* Arcball.cpp in Sources */,
 				A86B70FD18E5A2C700A79679 /* MarkerDetector.cpp in Sources */,
-				A86B70F518E5A29400A79679 /* Plane.cpp in Sources */,
-				A86B70F218E5A29400A79679 /* Arcball.cpp in Sources */,
-				A86B70F718E5A29400A79679 /* Sphere.cpp in Sources */,
-				A86B70F618E5A29400A79679 /* Shader.cpp in Sources */,
-				A86B70FA18E5A29400A79679 /* Viewer.cpp in Sources */,
-				A86B70F318E5A29400A79679 /* BasicShape.cpp in Sources */,
-				A86B70F818E5A29400A79679 /* Torus.cpp in Sources */,
+				A8AA5C7018E6F50B00003F18 /* Plane.cpp in Sources */,
+				A8E8D6D318E6F4CD00A75F2D /* ARViewer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

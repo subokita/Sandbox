@@ -13,7 +13,7 @@ import sklearn.decomposition
 
 def main():
 	# First load the audio data, the audio data on this example is obtained from http://www.ism.ac.jp/~shiro/research/blindsep.html
-	rate, source = scipy.io.wavfile.read('/Users/saburookita/Sandbox/X_rsm2.wav')
+	rate, source = scipy.io.wavfile.read('/Users/saburookita/Sandbox/blind_source_data/X_rsm2.wav')
 
 	# The 2 sources are stored in left and right channels of the audio
 	source_1, source_2 = source[:, 0], source[:, 1]
@@ -36,8 +36,8 @@ def main():
 	separated = reshape( separated, (shape(separated)[0] / 2, 2) )
 	
 	# Store the separated audio, listen to them later
-	scipy.io.wavfile.write( '/Users/saburookita/Sandbox/separated_1.wav', rate, separated[:, 0] )
-	scipy.io.wavfile.write( '/Users/saburookita/Sandbox/separated_2.wav', rate, separated[:, 1] )
+	scipy.io.wavfile.write( '/Users/saburookita/Sandbox/blind_source_data/separated_1.wav', rate, separated[:, 0] )
+	scipy.io.wavfile.write( '/Users/saburookita/Sandbox/blind_source_data/separated_2.wav', rate, separated[:, 1] )
 
 	# Plot the original and separated audio data
 	fig = pyplot.figure( figsize=(10, 8) )

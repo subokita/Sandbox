@@ -200,6 +200,7 @@ vector<Mat> Procrustes::generalizedProcrustes( std::vector<cv::Mat>& X, Mat& mea
         X = normalize( X );
         X = align( X, mean_shape );
         
+        
         /* Find a new mean shape from all the set of points */
         Mat new_mean = Mat::zeros( mean_shape.size(), mean_shape.type() );
         accumulate( X.begin(), X.end(), new_mean );

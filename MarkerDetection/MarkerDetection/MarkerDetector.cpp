@@ -8,7 +8,16 @@
 
 #include "MarkerDetector.h"
 
+MarkerDetector::MarkerDetector() {
+}
+
+
 MarkerDetector::MarkerDetector( float min_contour_size, int marker_width, int marker_height ) {
+    init( min_contour_size, marker_width, marker_height );
+}
+
+
+void MarkerDetector::init( float min_contour_size, int marker_width, int marker_height ) {
     this->minContourSize    = min_contour_size;
     this->markerWidth       = marker_width;
     this->markerHeight      = marker_height;

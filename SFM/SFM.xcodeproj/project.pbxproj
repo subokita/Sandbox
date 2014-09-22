@@ -310,13 +310,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/opencv/2.4.7.1/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include,
 					/usr/local/Cellar/freeimage/3.15.4/include,
 					/usr/local/Cellar/glfw3/3.0.3/include,
 					/usr/local/Cellar/glm/0.9.4.6/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/opencv/2.4.7.1/lib,
+					/usr/local/Cellar/opencv/2.4.8.2/lib,
 					/usr/local/Cellar/freeimage/3.15.4/lib,
 					/usr/local/Cellar/glfw3/3.0.3/lib,
 				);
@@ -332,6 +332,7 @@
 					"-lopencv_ml",
 					"-lopencv_objdetect",
 					"-lopencv_video",
+					"-lopencv_nonfree",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -343,13 +344,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/opencv/2.4.7.1/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include,
 					/usr/local/Cellar/freeimage/3.15.4/include,
 					/usr/local/Cellar/glfw3/3.0.3/include,
 					/usr/local/Cellar/glm/0.9.4.6/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/opencv/2.4.7.1/lib,
+					/usr/local/Cellar/opencv/2.4.8.2/lib,
 					/usr/local/Cellar/freeimage/3.15.4/lib,
 					/usr/local/Cellar/glfw3/3.0.3/lib,
 				);
@@ -365,6 +366,7 @@
 					"-lopencv_ml",
 					"-lopencv_objdetect",
 					"-lopencv_video",
+					"-lopencv_nonfree",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

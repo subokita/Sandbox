@@ -213,10 +213,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/Cellar/tbb/4.2.3/include,
-					/usr/local/Cellar/opencv/2.4.8.2/include,
+					/usr/local/Cellar/opencv/2.4.9/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/opencv/2.4.8.2/lib,
+					/usr/local/Cellar/opencv/2.4.9/lib,
 					"$(PROJECT_DIR)",
 					/usr/local/Cellar/tbb/4.2.3/lib,
 				);
@@ -232,8 +232,8 @@
 					"-lopencv_ml",
 					"-lopencv_objdetect",
 					"-lopencv_video",
-					"-ltbb",
 					"-ltbbmalloc",
+					"-ltbb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -246,10 +246,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/Cellar/tbb/4.2.3/include,
-					/usr/local/Cellar/opencv/2.4.8.2/include,
+					/usr/local/Cellar/opencv/2.4.9/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/opencv/2.4.8.2/lib,
+					/usr/local/Cellar/opencv/2.4.9/lib,
 					"$(PROJECT_DIR)",
 					/usr/local/Cellar/tbb/4.2.3/lib,
 				);
@@ -265,8 +265,8 @@
 					"-lopencv_ml",
 					"-lopencv_objdetect",
 					"-lopencv_video",
-					"-ltbb",
 					"-ltbbmalloc",
+					"-ltbb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -291,6 +291,7 @@
 				A89E71EB191A004C00C3B9D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

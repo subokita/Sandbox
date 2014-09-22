@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9F85023F-0347-43F0-B92B-220C3097E0AD</string>
+	<string>EA02BAEF-FE74-4FA2-B4F2-7C7E7B00DA8E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>EfficientGraphBasedImageSegmentation</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>181F7462-A466-4F4A-8695-56A0E631854A</key>
+		<key>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</key>
 		<string>https://github.com/subokita/Sandbox.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>EfficientGraphBasedImageSegmentation/EfficientGraphBasedImageSegmentation.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>181F7462-A466-4F4A-8695-56A0E631854A</key>
+		<key>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>181F7462-A466-4F4A-8695-56A0E631854A</string>
+	<string>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>181F7462-A466-4F4A-8695-56A0E631854A</string>
+			<string>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Sandbox</string>
 		</dict>

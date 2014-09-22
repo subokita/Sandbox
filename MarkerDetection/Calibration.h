@@ -10,5 +10,29 @@
 #define __MarkerDetection__Calibration__
 
 #include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+class Calibration {
+public:
+    Mat camMatrix;
+    Mat distCoeff;
+    vector<Mat> rvecs;
+    vector<Mat> tvecs;
+    Size patternSize;
+    Size imageSize;
+    int imageCount;
+    
+    
+    Calibration();
+    Calibration( Size pattern_size );
+    ~Calibration();
+    
+    void calibrateFromVideo( string filename );
+    void save( string filename );
+    static Calibration load( string filename );
+};
 
 #endif /* defined(__MarkerDetection__Calibration__) */

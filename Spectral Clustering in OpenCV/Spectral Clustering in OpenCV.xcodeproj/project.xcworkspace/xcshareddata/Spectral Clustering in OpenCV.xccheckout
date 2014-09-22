@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>8F7A17CB-3601-4B9B-B38E-37B9505AF9E8</string>
+	<string>EFB6C925-3373-4F3B-B000-81DD5B33A758</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Spectral Clustering in OpenCV</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>DCBB0155-969B-4145-8205-F8F25B062FA6</key>
+		<key>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</key>
 		<string>https://github.com/subokita/Sandbox.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Spectral Clustering in OpenCV/Spectral Clustering in OpenCV.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>DCBB0155-969B-4145-8205-F8F25B062FA6</key>
+		<key>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>DCBB0155-969B-4145-8205-F8F25B062FA6</string>
+	<string>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>DCBB0155-969B-4145-8205-F8F25B062FA6</string>
+			<string>5F32318C-F2FF-42AE-805A-61C3EBAD66D6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Sandbox</string>
 		</dict>

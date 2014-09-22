@@ -26,8 +26,10 @@ struct Marker {
 
 class MarkerDetector {
 public:
+    MarkerDetector();
     MarkerDetector( float min_contour_size, int marker_width, int marker_height );
     
+    void init( float min_contour_size, int marker_width, int marker_height );
     vector<Marker> findMarkerCandidates( Mat& frame );
     bool opticalFlowPrediction( Mat& prev_frame, Mat& frame, Marker& marker );
     

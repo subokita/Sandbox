@@ -131,17 +131,18 @@ void print( glm::vec3 vector ) {
 }
 
 void print( glm::mat4 matrix ) {
-    for( int j = 0; j < 4; j++ ) {
-        for( int i = 0; i < 4; i++ )
-            printf( "%+02.2f ", matrix[i][j] );
-        printf( "\n" );
-    }
+    printf( "---------------------------------\n" );
+    printf( "|%+02.4f %+02.4f %+02.4f %+02.4f|\n", matrix[0][0], matrix[1][0], matrix[2][0], matrix[3][0] );
+    printf( "|%+02.4f %+02.4f %+02.4f %+02.4f|\n", matrix[0][1], matrix[1][1], matrix[2][1], matrix[3][1] );
+    printf( "|%+02.4f %+02.4f %+02.4f %+02.4f|\n", matrix[0][2], matrix[1][2], matrix[2][2], matrix[3][2] );
+    printf( "|%+02.4f %+02.4f %+02.4f %+02.4f|\n", matrix[0][3], matrix[1][3], matrix[2][3], matrix[3][3] );
+    printf( "---------------------------------\n" );
 }
 
 void print( glm::mat3 matrix ) {
-    for( int j = 0; j < 3; j++ ) {
-        for( int i = 0; i < 3; i++ )
-            printf( "%02.2f ", matrix[i][j] );
-        printf( "\n" );
-    }
+    printf( "-------------------------\n" );
+    printf( "|%+02.4f %+02.4f %+02.4f|\n", matrix[0][0], matrix[1][0], matrix[2][0] );
+    printf( "|%+02.4f %+02.4f %+02.4f|\n", matrix[0][1], matrix[1][1], matrix[2][1] );
+    printf( "|%+02.4f %+02.4f %+02.4f|\n", matrix[0][2], matrix[1][2], matrix[2][2] );
+    printf( "-------------------------\n" );
 }

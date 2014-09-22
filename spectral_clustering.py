@@ -36,7 +36,7 @@ def degreeMatrix( adjacency ):
 	return adjacency.sum( axis=1 )
 
 def main():
-	no_of_samples = 400
+	no_of_samples = 8
 	
 	data = []
 	data.append( datasets.make_moons(n_samples=no_of_samples, noise=0.05)[0] )
